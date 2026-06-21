@@ -256,7 +256,7 @@ index.html
     </header>
     <main class="pt-20">
         <!-- Hero Section -->
-        <section class="relative h-[600px] w-full overflow-hidden flex items-center">
+        <section class="relative h-[600px] w-full overflow-hidden flex items-start pt-3 md:pt-4">
             <div class="absolute inset-0 z-0">
                 <video autoplay loop muted playsinline class="w-full h-full object-cover">
                     <source src="salsaaaaaa.mp4" type="video/mp4" />
@@ -266,22 +266,43 @@ index.html
                 </video>
                 <div class="absolute inset-0 image-overlay-gradient"></div>
             </div>
-            <div class="relative z-10 px-margin-desktop max-w-container-max mx-auto w-full">
-                <div class="max-w-2xl">
-                    <h1 class="font-display-lg text-display-lg text-primary uppercase mb-4">Powering Industrial
-                        Excellence</h1>
-                    <p class="text-on-surface-variant text-xl mb-8 font-body-md leading-relaxed">
-                        High-precision power transmission solutions designed for the most demanding mechanical
-                        environments. Engineering reliability into every component.
-                    </p>
-                    <div class="flex gap-4">
+            <div class="relative z-10 pl-4 md:pl-6 pr-margin-desktop max-w-container-max mx-auto w-full">
+                <!-- Flex container wrapper for the entire profile block -->
+                <div class="flex flex-col max-w-4xl mr-auto">
+                    <!-- Top Row: Photo and Name side-by-side -->
+                    <div class="flex flex-col md:flex-row gap-8 items-start">
+                        <!-- Thinner & Taller Photo Area Placeholder -->
+                        <div class="relative w-[260px] h-[370px] bg-surface-container-low border border-outline-variant rounded-lg flex items-center justify-center shadow-sm overflow-hidden shrink-0">
+                            <span class="material-symbols-outlined text-7xl text-outline/40">person</span>
+                            <!-- Founder Badge in top-right corner -->
+                            <span class="absolute top-4 right-4 bg-error text-white text-[10px] font-bold uppercase px-2.5 py-1.5 rounded">FOUNDER</span>
+                        </div>
+                        
+                        <!-- Founder Details (Name & Blank Info) -->
+                        <div class="flex-grow pt-4">
+                            <!-- Name of the Founder (highlighted in a larger font) -->
+                            <h1 class="font-display-lg text-3xl md:text-4xl text-primary uppercase font-bold tracking-wide leading-tight">
+                                Saeed Omar<br>Basaffar
+                            </h1>
+                            <!-- Founder Info Area (to be populated by backend) -->
+                            <div class="mt-4 max-w-md">
+                                <p id="founder-info" class="text-on-surface-variant text-xs md:text-sm leading-relaxed font-body-md">
+                                    Biography, visionary leadership, and credentials text placeholder. This section will be populated dynamically by the backend system.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom Row: Buttons (placed below the photo, wide/rectangular) -->
+                    <div class="flex flex-col sm:flex-row gap-4 mt-8 w-full max-w-[640px]">
                         <a href="products.html"
-                            class="bg-primary text-on-primary px-8 py-4 font-bold flex items-center gap-2 hover:translate-x-1 transition-transform">
-                            BROWSE CATALOG <span class="material-symbols-outlined">arrow_forward</span>
+                            class="flex-1 bg-primary text-on-primary p-4 h-16 font-bold flex flex-col items-center justify-center hover:translate-x-1 transition-transform text-center text-sm uppercase leading-tight">
+                            <span class="flex items-center gap-1.5 justify-center">BROWSE CATALOG <span class="material-symbols-outlined text-base">arrow_forward</span></span>
                         </a>
                         <a href="products.html"
-                            class="border-2 border-primary text-primary px-8 py-4 font-bold hover:bg-primary/5 transition-colors flex items-center">
-                            VIEW SPECIFICATIONS
+                            class="flex-1 border-2 border-primary text-primary p-4 h-16 font-bold flex flex-col items-center justify-center hover:bg-primary/5 transition-colors text-center text-sm uppercase leading-tight">
+                            <span>VIEW</span>
+                            <span>SPECIFICATIONS</span>
                         </a>
                     </div>
                 </div>

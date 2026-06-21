@@ -1,20 +1,29 @@
 [
   {
-    "_id": "5d698ctwkd3u58rc8adgi",
-    "createdAt": "2026-06-20T10:23:31.344Z",
-    "updatedAt": "2026-06-20T10:23:31.344Z",
+    "_id": "nwn9oe99is0rng5iutaph",
+    "createdAt": "2026-06-21T10:41:12.761Z",
+    "updatedAt": "2026-06-21T10:41:12.762Z",
     "name": "John Doe",
     "email": "john@example.com",
-    "password": "$2b$10$MMhR.qSh00t2qXZveNwhEuthcATqmeKNw3NrEbNOMMdbM4S2ejQUO",
+    "password": "$2b$10$ED0383J9y.4oGS3uhMwZNO7imgWoGomUIepx04O1pITZhofKhouvq",
     "status": "Active"
   },
   {
-    "_id": "a7sdcmgkrzbndgdbjvct",
-    "createdAt": "2026-06-20T10:23:31.345Z",
-    "updatedAt": "2026-06-20T10:23:31.345Z",
+    "_id": "h4jr7079xqols8i4bvs89i",
+    "createdAt": "2026-06-21T10:41:12.763Z",
+    "updatedAt": "2026-06-21T10:41:12.763Z",
     "name": "Jane Smith",
     "email": "jane@example.com",
-    "password": "$2b$10$MMhR.qSh00t2qXZveNwhEuthcATqmeKNw3NrEbNOMMdbM4S2ejQUO",
+    "password": "$2b$10$ED0383J9y.4oGS3uhMwZNO7imgWoGomUIepx04O1pITZhofKhouvq",
     "status": "Active"
+  },
+  {
+    "_id": "2zmtbnm4w6k7k7ifv9uhvl",
+    "createdAt": "2026-06-21T10:41:12.766Z",
+    "updatedAt": "2026-06-21T10:41:12.766Z",
+    "name": "Blocked Bob",
+    "email": "bob@example.com",
+    "password": "$2b$10$ED0383J9y.4oGS3uhMwZNO7imgWoGomUIepx04O1pITZhofKhouvq",
+    "status": "Blocked"
   }
 ]

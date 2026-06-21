@@ -1,34 +1,21 @@
 [
   {
-    "_id": "wrcv9vd76at3yktydrgtk",
-    "createdAt": "2026-06-20T10:23:31.346Z",
-    "updatedAt": "2026-06-20T21:51:22.102Z",
+    "_id": "ksi2uhrquy8g8fb1crl7n8",
+    "createdAt": "2026-06-21T10:41:12.766Z",
+    "updatedAt": "2026-06-21T10:41:12.766Z",
     "name": "John Doe",
     "email": "john@example.com",
     "phone": "+966500000001",
     "company": "Industrial Co",
     "subject": "quote",
     "message": "Need pricing for bulk order of Optibelt KB SK wedge belts.",
-    "status": "Replied",
-    "replies": [
-      {
-        "sender": "Admin",
-        "message": "2000",
-        "timestamp": "2026-06-20T13:58:23.786Z"
-      },
-      {
-        "sender": "Admin",
-        "message": "bye",
-        "timestamp": "2026-06-20T21:51:22.099Z"
-      }
-    ],
-    "emailSentAt": "2026-06-20T21:51:22.099Z",
-    "lastResponseAt": "2026-06-20T21:51:22.099Z"
+    "status": "Open",
+    "replies": []
   },
   {
-    "_id": "qlrfwqcvfhgftepq0mgidc",
-    "createdAt": "2026-06-20T10:23:31.347Z",
-    "updatedAt": "2026-06-20T10:23:31.347Z",
+    "_id": "wuadlajefzabl8611o6qse",
+    "createdAt": "2026-06-21T10:41:12.767Z",
+    "updatedAt": "2026-06-21T10:41:12.767Z",
     "name": "Jane Smith",
     "email": "jane@example.com",
     "phone": "+966500000002",
@@ -40,49 +27,34 @@
       {
         "sender": "Admin",
         "message": "Hello Jane, Kauman Chevron Belts generally withstand up to 90 degrees Celsius.",
-        "timestamp": "2026-06-20T10:23:31.346Z"
+        "timestamp": "2026-06-21T10:41:12.767Z"
       },
       {
         "sender": "Jane Smith",
         "message": "Thank you, that is exactly what I needed!",
-        "timestamp": "2026-06-20T10:23:31.346Z"
+        "timestamp": "2026-06-21T10:41:12.767Z"
       }
     ]
   },
   {
-    "_id": "82c6hjxv8y51pwqlyb8qpt",
-    "createdAt": "2026-06-20T13:57:57.756Z",
-    "updatedAt": "2026-06-21T06:58:43.877Z",
-    "name": "Alina Momin",
+    "_id": "f49dp1inqnf9b9klagpgrc",
+    "createdAt": "2026-06-21T10:43:57.211Z",
+    "updatedAt": "2026-06-21T10:44:34.144Z",
+    "name": "Irfana Momin",
     "email": "irfanamomin8@gmail.com",
     "phone": "9372091920",
     "company": "AFRO-7",
     "subject": "quote",
-    "message": "How does it work?",
+    "message": "how",
     "status": "Replied",
     "replies": [
       {
         "sender": "Admin",
-        "message": "ok will send you the details",
-        "timestamp": "2026-06-20T13:58:41.740Z"
-      },
-      {
-        "sender": "Admin",
-        "message": "in progress",
-        "timestamp": "2026-06-20T18:47:59.844Z"
-      },
-      {
-        "sender": "Admin",
-        "message": "will inform you",
-        "timestamp": "2026-06-20T18:55:33.185Z"
-      },
-      {
-        "sender": "Admin",
-        "message": "yes",
-        "timestamp": "2026-06-21T06:58:43.875Z"
+        "message": "yes checking",
+        "timestamp": "2026-06-21T10:44:34.142Z"
       }
     ],
-    "emailSentAt": "2026-06-21T06:58:43.875Z",
-    "lastResponseAt": "2026-06-21T06:58:43.875Z"
+    "emailSentAt": "2026-06-21T10:44:34.142Z",
+    "lastResponseAt": "2026-06-21T10:44:34.142Z"
   }
 ]

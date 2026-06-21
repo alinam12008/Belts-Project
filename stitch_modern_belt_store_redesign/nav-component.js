@@ -83,7 +83,7 @@
     function buildDesktopNav(activePage) {
         return PAGES.map(p => {
             const isActive = p.id === activePage;
-            const baseClass = 'font-body-md text-body-md uppercase font-bold transition-colors';
+            const baseClass = 'font-body-md text-[11px] uppercase font-bold tracking-wider transition-colors whitespace-nowrap';
             const activeClass = 'text-primary border-b-2 border-primary pb-1';
             const inactiveClass = 'text-on-surface-variant hover:text-primary';
             const cls = `${baseClass} ${isActive ? activeClass : inactiveClass}`;
@@ -137,11 +137,83 @@
 
         // Find the existing header or build one
         const header = document.querySelector('header');
-        if (!header) return;
+        if (!header) return;        // Adjust header padding to make the logo block flush on the left
+        const headerInner = header.querySelector('.max-w-container-max');
+        if (headerInner) {
+            headerInner.classList.remove('px-margin-desktop');
+            headerInner.classList.add('pl-0', 'pr-margin-desktop', 'gap-4', 'lg:gap-6');
+        }
+
+        // Find the left container to handle logo replacement and gap reduction
+        const leftGroup = header.querySelector('.flex.items-center.gap-8');
+        if (leftGroup) {
+            const logoLink = leftGroup.querySelector('a');
+            if (logoLink) {
+                logoLink.outerHTML = `
+                <a href="index.html" class="flex items-center gap-4 bg-primary text-white w-[300px] h-20 shrink-0 select-none pl-6 pr-4">
+                    <!-- SVG Logo Icon (Optibelt interlocking loops in white square) -->
+                    <svg class="w-12 h-12 shrink-0" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- White square boundary -->
+                        <rect x="12" y="12" width="96" height="96" rx="3" fill="white"/>
+                        <!-- Clip path to keep loops inside the white square -->
+                        <clipPath id="square-clip">
+                            <rect x="12" y="12" width="96" height="96" rx="3"/>
+                        </clipPath>
+                        <g clip-path="url(#square-clip)">
+                            <!-- Bottom Loop -->
+                            <ellipse cx="42" cy="74" rx="65" ry="22" stroke="#003178" stroke-width="14" fill="none" transform="rotate(25 42 74)"/>
+                            
+                            <!-- Top Loop (with white mask underneath to cut through the bottom loop) -->
+                            <ellipse cx="34" cy="46" rx="65" ry="22" stroke="white" stroke-width="22" fill="none" transform="rotate(25 34 46)"/>
+                            <ellipse cx="34" cy="46" rx="65" ry="22" stroke="#003178" stroke-width="14" fill="none" transform="rotate(25 34 46)"/>
+                            
+                            <!-- Interlocking: Redraw top-right segment of Bottom Loop on top of everything -->
+                            <path d="M 51.3,54.1 A 65,22 25 0 1 100.9,101.5" stroke="white" stroke-width="22" fill="none"/>
+                            <path d="M 51.3,54.1 A 65,22 25 0 1 100.9,101.5" stroke="#003178" stroke-width="14" fill="none"/>
+                        </g>
+                    </svg>
+                    <div class="flex flex-col justify-center leading-none">
+                        <!-- Arabic text -->
+                        <span class="font-bold text-[28px] leading-none text-white font-headline-lg whitespace-nowrap">معرض السيور</span>
+                        <!-- English text -->
+                        <span class="text-[17px] leading-none uppercase tracking-widest text-blue-100 font-bold font-technical-label mt-1 whitespace-nowrap">BELTS STORE</span>
+                    </div>
+                </a>`;
+            }
+            leftGroup.classList.remove('gap-8');
+            leftGroup.classList.add('gap-4', 'lg:gap-5');
+        }
+
+        // Adjust search input width & height & hide on screens below xl to prevent horizontal overflow
+        const searchInput = header.querySelector('#header-search');
+        if (searchInput) {
+            searchInput.classList.remove('w-64', 'py-2');
+            searchInput.classList.add('w-28', 'lg:w-36', 'py-1.5', 'text-xs');
+            
+            const searchContainer = searchInput.parentElement;
+            if (searchContainer) {
+                searchContainer.classList.remove('hidden', 'lg:block');
+                searchContainer.classList.add('hidden', 'xl:block');
+                
+                // Adjust search icon position and size to fit the smaller input
+                const searchIcon = searchContainer.querySelector('.material-symbols-outlined');
+                if (searchIcon) {
+                    searchIcon.classList.remove('top-2.5');
+                    searchIcon.classList.add('top-1/2', '-translate-y-1/2', 'text-lg', 'right-2.5');
+                }
+            }
+        }
+
+        // Prevent horizontal scrollbar on body & html dynamically
+        document.body.classList.add('overflow-x-hidden');
+        document.documentElement.classList.add('overflow-x-hidden');
 
         // Find the existing nav element inside the header
         const existingNav = header.querySelector('nav');
         if (!existingNav) return;
+
+        // Set compact gap classes and prevent shrinking
+        existingNav.className = 'hidden md:flex items-center gap-2.5 lg:gap-3.5 shrink-0';
 
         // Replace the nav content with the 5-item nav
         existingNav.innerHTML = buildDesktopNav(activePage);
@@ -157,26 +229,40 @@
             rightSection.insertBefore(hamburger, rightSection.firstChild);
         }
 
-        // Add admin settings button if not present
+        // Add admin settings button & Language select (grouped tightly to the right)
         if (rightSection && !document.getElementById('admin-navbar-btn')) {
             const adminBtn = document.createElement('a');
             adminBtn.id = 'admin-navbar-btn';
             adminBtn.href = '/admin.html';
             adminBtn.setAttribute('aria-label', 'Admin Panel');
-            adminBtn.className = 'flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-colors';
+            adminBtn.className = 'flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-colors shrink-0';
             adminBtn.title = 'Admin Panel';
             adminBtn.innerHTML = '<span class="material-symbols-outlined text-2xl">admin_panel_settings</span>';
-            rightSection.appendChild(adminBtn);
 
             // Language selector
             const langWrapper = document.createElement('div');
-            langWrapper.className = 'flex items-center ml-2';
+            langWrapper.className = 'flex items-center shrink-0';
             const langSelect = document.createElement('select');
             langSelect.id = 'site-lang-select';
-            langSelect.className = 'p-2 border border-outline-variant bg-surface-container-low text-sm rounded';
+            langSelect.className = 'p-1 border border-outline-variant bg-surface-container-low text-xs rounded w-[90px] shrink-0 font-body-md font-bold';
             langSelect.innerHTML = '<option value="en">English</option><option value="ar">العربية</option>';
             langWrapper.appendChild(langSelect);
-            rightSection.appendChild(langWrapper);
+
+            // Group View Cart button, Admin button, and Language Select closer together
+            const viewCartBtn = header.querySelector('button[onclick*="floating-cart-btn"]');
+            const toolsGroup = document.createElement('div');
+            toolsGroup.id = 'navbar-tools-group';
+            toolsGroup.className = 'flex items-center gap-1.5 shrink-0 ml-2';
+
+            if (viewCartBtn) {
+                viewCartBtn.className = viewCartBtn.className.replace('px-6 py-2', 'px-3 py-1.5 text-xs shrink-0');
+                // Ensure text inside button doesn't wrap
+                viewCartBtn.classList.add('whitespace-nowrap');
+                toolsGroup.appendChild(viewCartBtn);
+            }
+            toolsGroup.appendChild(adminBtn);
+            toolsGroup.appendChild(langWrapper);
+            rightSection.appendChild(toolsGroup);
 
             function getSiteLang() { return localStorage.getItem('site_lang') || 'en'; }
             function applySiteLang(lang) {
