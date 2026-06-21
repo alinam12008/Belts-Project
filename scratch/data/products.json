@@ -251,7 +251,7 @@
   {
     "_id": "tja7we3pskqbwwknyogb",
     "createdAt": "2026-06-20T10:23:31.093Z",
-    "updatedAt": "2026-06-20T10:23:31.093Z",
+    "updatedAt": "2026-06-21T07:18:13.827Z",
     "name": "Optibelt VB",
     "description": "<div class=\"row\" id=\"row-1345649746\"> <div id=\"col-1452811419\" class=\"col medium-2/3 large-8\" > <div class=\"col-inner\" > <div class=\"container section-title-container\" ><h2 class=\"section-title section-title-normal\"><b aria-hidden=\"true\"></b><span class=\"section-title-main\" >Description</span><b aria-hidden=\"true\"></b></h2>",
     "shortDescription": "<div class=\"product-detail__description js-pdp-section__target-description is-hidden-sm-md\"> <p>Due to its versatile applications, the <b>optibelt VB</b> is the classic model among drive belts. Its qualities really come to the fore in difficult drives for agricultural machinery, just as in unusual drive solutions, such as V-flat drives in mechanical engineerin<br /> <div id=\"gap-1711083277\" class=\"gap-element clearfix\" style=\"display:block; height:auto;\"> <style> </style>",
@@ -273,7 +273,7 @@
       "Belts Power Transmission",
       "V Belts"
     ],
-    "stock": 60,
+    "stock": 59,
     "status": "Active",
     "slug": "optibelt-vb"
   },
