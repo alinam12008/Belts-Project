@@ -8,6 +8,10 @@ const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const db = require('./db');
 
+// Serve static files from the folder where images are stored
+// app.use('/uploads', express.static(path.join(__dirname, 'mmmm', 'uploads')));
+// If images are in a different folder, change 'uploads' accordingly
+
 // ============================================================
 // 1. SMTP Transporter – with fallback and logging
 // ============================================================

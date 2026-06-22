@@ -278,10 +278,24 @@
         <!-- Sidebar -->
         <aside class="w-64 bg-primary text-on-primary flex flex-col justify-between shrink-0 border-r border-outline-variant/20 shadow-xl z-20">
             <div>
-                <div class="h-20 flex items-center justify-between px-6 border-b border-outline-variant/20 bg-primary/20">
+                <!-- <div class="h-20 flex items-center justify-between px-6 border-b border-outline-variant/20 bg-primary/20">
                     <a href="index.html" class="font-headline-lg text-lg font-bold tracking-wider text-white">BELTS ADMIN</a>
                     <a href="index.html" class="text-white/60 hover:text-white" title="Go to Website"><span class="material-symbols-outlined text-base">open_in_new</span></a>
+                </div> -->
+
+                <div class="h-20 flex items-center justify-between px-6 border-b border-outline-variant/20 bg-primary/20">
+                <!-- Clickable Logo linking to main website -->
+                <a href="index.html" target="_blank" class="flex items-center gap-3 hover:opacity-80 transition-opacity" title="Go to BELTS STORE">
+                    <img src="https://belts-store.com/wp-content/uploads/2025/09/BELTS-STORE_en-1.svg" 
+                    alt="BELTS STORE Logo" 
+                    class="h-10 w-auto brightness-0 invert object-contain" />
+                </a>
+                <!-- External link icon (optional, kept for extra visibility) -->
+                <a href="index.html" target="_blank" class="text-white/60 hover:text-white" title="Go to Website">
+                <span class="material-symbols-outlined text-base">open_in_new</span>
+                </a>
                 </div>
+                
                 <nav class="p-4 space-y-1">
                     <a href="#dashboard" class="nav-item flex items-center gap-4 px-4 py-3 text-white/80 hover:bg-white/10 hover:text-white rounded-lg transition-all font-bold text-xs uppercase tracking-wider font-technical-label">
                         <span class="material-symbols-outlined">dashboard</span> Dashboard
