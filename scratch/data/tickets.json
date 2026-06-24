@@ -97,5 +97,41 @@
     ],
     "emailSentAt": "2026-06-23T17:17:06.720Z",
     "lastResponseAt": "2026-06-23T17:17:06.720Z"
+  },
+  {
+    "_id": "ql32mjc7eptz3vc6vidfbt",
+    "createdAt": "2026-06-24T14:56:13.268Z",
+    "updatedAt": "2026-06-24T14:57:21.565Z",
+    "name": "Ayush",
+    "email": "irfanamomin8@gmail.com",
+    "phone": "9372091920",
+    "company": "AFRO-7",
+    "subject": "quote",
+    "message": "how to implement",
+    "status": "Replied",
+    "replies": [
+      {
+        "sender": "Admin",
+        "message": "working on it",
+        "timestamp": "2026-06-24T14:56:36.431Z"
+      },
+      {
+        "sender": "Admin",
+        "message": "working on it",
+        "timestamp": "2026-06-24T14:56:39.013Z"
+      },
+      {
+        "sender": "Admin",
+        "message": "yes checking",
+        "timestamp": "2026-06-24T14:57:18.905Z"
+      },
+      {
+        "sender": "Admin",
+        "message": "yes checking",
+        "timestamp": "2026-06-24T14:57:21.564Z"
+      }
+    ],
+    "emailSentAt": "2026-06-24T14:57:21.564Z",
+    "lastResponseAt": "2026-06-24T14:57:21.564Z"
   }
 ]
