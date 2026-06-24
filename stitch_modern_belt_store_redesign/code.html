@@ -128,14 +128,14 @@
 <span class="font-headline-lg text-headline-lg font-bold text-on-surface dark:text-on-surface">BELTS STORE</span>
 <nav class="hidden md:flex items-center gap-6">
 <a class="font-body-md text-body-md uppercase font-bold text-primary border-b-2 border-primary pb-1" href="products.html">Products</a>
-<a class="font-body-md text-body-md uppercase font-bold text-on-surface-variant hover:text-primary transition-colors" href="mmmm.html">About Us</a>
+<a class="font-body-md text-body-md uppercase font-bold text-on-surface-variant hover:text-primary transition-colors" href="mmmm.html" data-i18n="nav_about">About Us</a>
 <a class="font-body-md text-body-md uppercase font-bold text-on-surface-variant hover:text-primary transition-colors" href="clients.html">Clients</a>
 <a class="font-body-md text-body-md uppercase font-bold text-on-surface-variant hover:text-primary transition-colors" href="#">Partners</a>
 </nav>
 </div>
 <div class="flex items-center gap-6">
 <div class="relative hidden lg:block">
-<input class="pl-4 pr-10 py-2 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-64 bg-surface-container-low" placeholder="Search Part Number..." type="text"/>
+<input class="pl-4 pr-10 py-2 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-64 bg-surface-container-low" placeholder="Search Part Number..." data-i18n-placeholder="search_placeholder" type="text"/>
 <span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant">search</span>
 </div>
 <button class="bg-primary text-on-primary font-bold px-6 py-2 uppercase text-label-sm hover:bg-primary-container transition-all">CONTACT US</button>
@@ -533,9 +533,9 @@
 <footer class="bg-primary dark:bg-on-primary-fixed text-on-primary mt-20">
 <div class="w-full py-32 px-margin-desktop grid grid-cols-12 gap-gutter max-w-container-max mx-auto">
 <div class="col-span-12 lg:col-span-4">
-<span class="font-headline-lg text-headline-lg font-bold text-on-primary mb-6 block">BELTS STORE</span>
+<span class="font-headline-lg text-headline-lg font-bold text-on-primary mb-6 block" data-i18n="brand">BELTS STORE</span>
 <p class="text-surface-variant opacity-80 text-body-md max-w-sm mb-8">
-                    Supplying global industries with premium power transmission components since 1994. Quality certified and engineering backed.
+                    <span data-i18n="footer_description">Supplying global industries with premium power transmission components since 1994. Quality certified and engineering backed.</span>
                 </p>
 <div class="flex gap-4">
 <a class="w-10 h-10 border border-on-primary/20 flex items-center justify-center hover:bg-on-primary/10 transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
@@ -562,20 +562,25 @@
 </ul>
 </div>
 <div class="col-span-12 lg:col-span-4">
-<h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold">Industrial Newsletter</h4>
-<p class="text-xs opacity-70 mb-4">Receive technical updates and inventory arrivals.</p>
+<h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold" data-i18n="newsletter">Industrial Newsletter</h4>
+<p class="text-xs opacity-70 mb-4" data-i18n="newsletter_text">Receive technical updates and inventory arrivals.</p>
 <div class="flex">
-<input class="bg-on-primary-fixed border-none text-on-primary p-3 flex-1 outline-none" placeholder="Email address" type="email"/>
-<button class="bg-secondary-fixed text-on-secondary-fixed px-6 font-bold hover:bg-secondary transition-colors">JOIN</button>
+<input class="bg-on-primary-fixed border-none text-on-primary p-3 flex-1 outline-none" placeholder="Email address" data-i18n-placeholder="email_placeholder" type="email"/>
+<button class="bg-secondary-fixed text-on-secondary-fixed px-6 font-bold hover:bg-secondary transition-colors" data-i18n="join">JOIN</button>
 </div>
 </div>
 </div>
 <div class="border-t border-on-primary/10 py-8 px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="font-label-sm text-label-sm text-surface-variant opacity-60">© 2024 Belts Store. All Rights Reserved. Powering Industrial Excellence.</p>
-<div class="flex gap-8">
-<a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#">Privacy Policy</a>
-<a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#">Terms of Service</a>
-<a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#">Shipping &amp; Returns</a>
+<p class="font-label-sm text-label-sm text-surface-variant opacity-60"><span data-i18n="copyright">© 2024 Belts Store. All Rights Reserved.</span></p>
+<div class="flex gap-8 items-center">
+<a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#" data-i18n="privacy_policy">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#" data-i18n="terms_of_service">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#" data-i18n="shipping_returns">Shipping &amp; Returns</a>
+<div class="flex gap-2 items-center border-l border-on-primary/20 pl-8">
+<button id="lang-en" class="lang-btn px-3 py-1 rounded text-xs font-bold transition-colors hover:bg-on-primary/10" data-lang="en" title="English">EN</button>
+<span class="text-on-primary/30 text-xs">/</span>
+<button id="lang-ar" class="lang-btn px-3 py-1 rounded text-xs font-bold transition-colors hover:bg-on-primary/10" data-lang="ar" title="العربية">AR</button>
+</div>
 </div>
 </div>
 </footer>

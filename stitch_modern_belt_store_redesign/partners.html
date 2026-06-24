@@ -130,8 +130,10 @@
                 </nav>
             </div>
             <div class="flex items-center gap-6">
+                <!-- Language Switcher -->
+
                 <div class="relative hidden lg:block">
-                    <input id="header-search" class="pl-4 pr-10 py-2 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-64 bg-surface-container-low" placeholder="Search Part Number..." type="text" onkeydown="if(event.key==='Enter') window.location.href='products.html?search='+encodeURIComponent(this.value);" />
+                    <input id="header-search" class="pl-4 pr-10 py-2 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-64 bg-surface-container-low" placeholder="Search Part Number..." data-i18n-placeholder="search_placeholder" type="text" onkeydown="if(event.key==='Enter') window.location.href='products.html?search='+encodeURIComponent(this.value);" />
                     <span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant">search</span>
                 </div>
                 <button class="bg-primary text-on-primary font-bold px-6 py-2 uppercase text-label-sm hover:bg-primary-container transition-all hidden lg:block" onclick="document.getElementById('floating-cart-btn') && document.getElementById('floating-cart-btn').click();">VIEW CART</button>
@@ -290,11 +292,11 @@
             <div class="col-span-6 lg:col-span-2">
                 <h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-4 text-secondary-fixed font-bold">Navigation</h4>
                 <ul class="space-y-3 text-sm">
-                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="about.html">About Us</a></li>
-                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="products.html">Products</a></li>
-                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="clients.html">Our Clients</a></li>
-                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="partners.html">Our Partners</a></li>
-                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="contact.html">Contact Us</a></li>
+                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="about.html" data-i18n="nav_about">About Us</a></li>
+                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="products.html" data-i18n="nav_products">Products</a></li>
+                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="clients.html" data-i18n="nav_clients">Our Clients</a></li>
+                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="partners.html" data-i18n="nav_partners">Our Partners</a></li>
+                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="contact.html" data-i18n="nav_contact">Contact Us</a></li>
                 </ul>
             </div>
             <div class="col-span-6 lg:col-span-3">
@@ -306,10 +308,12 @@
             </div>
         </div>
         <div class="border-t border-on-primary/10 py-6 px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
-            <p class="text-surface-variant opacity-60">© 2024 Belts Store Industrial. All Rights Reserved.</p>
-            <div class="flex gap-6 text-surface-variant opacity-60"><span>ISO 9001:2015</span><span>Certified Quality System</span></div>
+            <p class="text-surface-variant opacity-60"><span data-i18n="copyright">© 2024 Belts Store. All Rights Reserved.</span></p>
+            <div class="flex gap-6 items-center text-surface-variant opacity-60"><span>ISO 9001:2015</span><span>Certified Quality System</span><div class="flex gap-2 items-center border-l border-on-primary/20 pl-6"><button id="lang-en" class="lang-btn px-3 py-1 rounded text-xs font-bold transition-colors hover:bg-on-primary/10" data-lang="en" title="English">EN</button><span class="text-on-primary/30 text-xs">/</span><button id="lang-ar" class="lang-btn px-3 py-1 rounded text-xs font-bold transition-colors hover:bg-on-primary/10" data-lang="ar" title="العربية">AR</button></div></div>
         </div>
     </footer>
+    <script src="/i18n.js"></script>
+    <script src="language-switcher.js"></script>
     <script src="nav-component.js"></script>
     <script src="cart.js"></script>
 </body>

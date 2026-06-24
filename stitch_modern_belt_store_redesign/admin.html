@@ -276,7 +276,7 @@
     <!-- ================= MAIN LAYOUT ================= -->
     <div id="admin-layout" class="flex-1 flex overflow-hidden hidden">
         <!-- Sidebar -->
-        <aside class="w-64 bg-primary text-on-primary flex flex-col justify-between shrink-0 border-r border-outline-variant/20 shadow-xl z-20">
+        <aside id="admin-sidebar" class="w-64 bg-primary text-on-primary flex flex-col justify-between shrink-0 border-r border-outline-variant/20 shadow-xl z-30 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300">
             <div>
                 <!-- <div class="h-20 flex items-center justify-between px-6 border-b border-outline-variant/20 bg-primary/20">
                     <a href="index.html" class="font-headline-lg text-lg font-bold tracking-wider text-white">BELTS ADMIN</a>
@@ -334,8 +334,11 @@
 
         <!-- Main Body -->
         <div class="flex-1 flex flex-col overflow-hidden bg-surface">
-            <header class="h-20 bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-8 shadow-sm z-10">
-                <div class="flex items-center gap-4">
+            <header class="h-20 bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-4 md:px-8 shadow-sm z-10 relative">
+                <div class="flex items-center gap-2 md:gap-4">
+                    <button id="admin-sidebar-toggle" class="md:hidden flex items-center justify-center p-2 rounded hover:bg-surface-container text-on-surface-variant transition-colors" onclick="document.getElementById('admin-sidebar').classList.toggle('-translate-x-full')">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
                     <h2 class="font-headline-lg text-xl font-bold text-primary uppercase" id="section-title">Dashboard</h2>
                 </div>
                 <div class="flex items-center gap-6">
@@ -351,7 +354,10 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Language selector removed -->
+                    <div class="flex items-center gap-2 border-l border-outline-variant pl-6 ml-2">
+                        <button id="lang-en" class="lang-btn px-3 py-1 rounded text-xs font-bold transition-colors hover:bg-on-primary/10 text-on-surface" data-lang="en" title="English">EN</button>
+                        <button id="lang-ar" class="lang-btn px-3 py-1 rounded text-xs font-bold transition-colors hover:bg-on-primary/10 text-on-surface" data-lang="ar" title="العربية">AR</button>
+                    </div>
                 </div>
             </header>
 
@@ -496,7 +502,7 @@
                             <!-- Actions and search -->
                             <div class="flex flex-col sm:flex-row justify-between items-center gap-4 bg-surface-container-lowest p-4 border border-outline-variant rounded-lg">
                                 <div class="relative w-full sm:w-80">
-                                    <input id="product-search-input" oninput="renderProductsTable()" class="w-full pl-10 pr-4 py-2.5 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm bg-surface-container-low transition-all" placeholder="Filter by name or SKU..."/>
+                                    <input id="product-search-input" oninput="renderProductsTable()" class="w-full pl-10 pr-4 py-2.5 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm bg-surface-container-low transition-all" placeholder="Filter by name or SKU..." data-i18n-placeholder="admin_filter_sku_placeholder"/>
                                     <span class="material-symbols-outlined absolute left-3 top-3 text-on-surface-variant text-base">search</span>
                                 </div>
                                 <button onclick="openAddProductModal()" class="w-full sm:w-auto bg-primary text-on-primary font-bold px-6 py-2.5 uppercase text-xs hover:bg-primary-container transition-all flex items-center justify-center gap-2 rounded shadow">
@@ -608,7 +614,7 @@
                                     <h3 class="font-headline-lg text-base font-bold text-primary uppercase">Tickets Inbox</h3>
                                 </div>
                                 <div class="relative w-full max-w-[220px]">
-                                    <input id="ticket-search-input" oninput="renderTicketsList()" placeholder="Search ticket subject or client..." class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded text-xs bg-surface-container-low outline-none focus:ring-1 focus:ring-primary focus:border-primary" />
+                                    <input id="ticket-search-input" oninput="renderTicketsList()" placeholder="Search ticket subject or client..." data-i18n-placeholder="admin_ticket_search_placeholder" class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded text-xs bg-surface-container-low outline-none focus:ring-1 focus:ring-primary focus:border-primary" />
                                     <span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-base">search</span>
                                 </div>
                             </div>
@@ -735,7 +741,7 @@
                 <!-- Amount field -->
                 <div>
                     <label class="block text-xs uppercase font-technical-label text-on-surface-variant mb-1">Order Amount (optional)</label>
-                    <input id="form-order-amount" type="number" step="0.01" placeholder="Leave empty to auto-calculate" class="w-full p-2.5 border border-outline-variant bg-surface-container-low text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary" />
+                    <input id="form-order-amount" type="number" step="0.01" placeholder="Leave empty to auto-calculate" data-i18n-placeholder="admin_auto_calculate_placeholder" class="w-full p-2.5 border border-outline-variant bg-surface-container-low text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary" />
                 </div>
 
                 <div class="border border-outline-variant rounded-lg bg-surface-container-low p-4">
@@ -782,7 +788,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs uppercase font-technical-label text-on-surface-variant mb-1">Category *</label>
-                        <input id="form-product-cat" type="text" list="category-options" required placeholder="e.g. Bearings" class="w-full p-2.5 border border-outline-variant bg-surface-container-low text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary"/>
+                        <input id="form-product-cat" type="text" list="category-options" required placeholder="e.g. Bearings" data-i18n-placeholder="admin_eg_bearings_placeholder" class="w-full p-2.5 border border-outline-variant bg-surface-container-low text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary"/>
                         <datalist id="category-options">
                             <option value="Belts Power Transmission"></option>
                             <option value="Pulleys"></option>
@@ -832,7 +838,7 @@
                     <label class="block text-xs uppercase font-technical-label text-on-surface-variant mb-1">Product Image Upload / URL</label>
                     <div class="flex gap-4">
                         <input id="form-product-image-file" type="file" accept="image/*" class="w-full p-2 border border-outline-variant bg-surface-container-low text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary"/>
-                        <input id="form-product-image-url" type="text" placeholder="Or enter direct URL" class="w-full p-2.5 border border-outline-variant bg-surface-container-low text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary"/>
+                        <input id="form-product-image-url" type="text" placeholder="Or enter direct URL" data-i18n-placeholder="admin_direct_url_placeholder" class="w-full p-2.5 border border-outline-variant bg-surface-container-low text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary"/>
                     </div>
                 </div>
 
@@ -843,7 +849,7 @@
 
                 <div>
                     <label class="block text-xs uppercase font-technical-label text-on-surface-variant mb-1">Full Description (Long HTML Description)</label>
-                    <textarea id="form-product-desc" rows="3" placeholder="Detailed product descriptions or HTML specifications..." class="w-full p-2.5 border border-outline-variant bg-surface-container-low text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary"></textarea>
+                    <textarea id="form-product-desc" rows="3" placeholder="Detailed product descriptions or HTML specifications..." data-i18n-placeholder="admin_detailed_desc_placeholder" class="w-full p-2.5 border border-outline-variant bg-surface-container-low text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary"></textarea>
                 </div>
 
                 <div class="space-y-2">
@@ -871,7 +877,7 @@
     <script>
         // ---- Currency helper ----
         function formatCurrency(amount) {
-            return `$${amount.toFixed(2)}`;
+            return `SAR ${amount.toFixed(2)}`;
         }
 
         // ---- Auth state ----
@@ -948,6 +954,11 @@
                     item.classList.add('text-white/80');
                 }
             });
+            // Close sidebar on mobile
+            const sidebar = document.getElementById('admin-sidebar');
+            if (sidebar && !sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.add('-translate-x-full');
+            }
             const titles = {
                 dashboard: "Terminal Dashboard",
                 products: "Product Catalog",
@@ -1833,7 +1844,7 @@
                     <div id="ticket-product-picker-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
                 </div>
                 <div class="flex gap-3">
-                    <input id="ticket-reply-msg" type="text" placeholder="Type your response to customer..." class="flex-1 p-2.5 border border-outline-variant bg-surface text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary"/>
+                    <input id="ticket-reply-msg" type="text" placeholder="Type your response to customer..." data-i18n-placeholder="admin_response_placeholder" class="flex-1 p-2.5 border border-outline-variant bg-surface text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary"/>
                     <button onclick="handleReplyTicket('${ticket._id}')" class="bg-primary text-on-primary font-bold px-6 py-2 uppercase text-[10px] hover:bg-primary-container transition-all rounded shadow">
                         Send Response
                     </button>
@@ -1915,8 +1926,8 @@
             const row = document.createElement('div');
             row.className = 'flex items-center gap-2 spec-row';
             row.innerHTML = `
-                <input type="text" placeholder="Property (e.g. Width)" value="${escapeHtml(key)}" class="flex-1 p-2 border border-outline-variant bg-surface-container-lowest text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary spec-key" required/>
-                <input type="text" placeholder="Value (e.g. 50mm)" value="${escapeHtml(value)}" class="flex-1 p-2 border border-outline-variant bg-surface-container-lowest text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary spec-value" required/>
+                <input type="text" placeholder="Property (e.g. Width)" data-i18n-placeholder="admin_property_placeholder" value="${escapeHtml(key)}" class="flex-1 p-2 border border-outline-variant bg-surface-container-lowest text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary spec-key" required/>
+                <input type="text" placeholder="Value (e.g. 50mm)" data-i18n-placeholder="admin_value_placeholder" value="${escapeHtml(value)}" class="flex-1 p-2 border border-outline-variant bg-surface-container-lowest text-xs rounded outline-none focus:ring-1 focus:ring-primary focus:border-primary spec-value" required/>
                 <button type="button" onclick="this.parentElement.remove()" class="p-2 text-on-surface-variant hover:text-error transition-colors flex items-center justify-center border border-outline-variant rounded hover:border-error bg-surface-container-low" title="Delete Property">
                     <span class="material-symbols-outlined text-sm">delete</span>
                 </button>
@@ -2333,5 +2344,7 @@
 
         console.log('Admin panel loaded (full functions, no i18n).');
     </script>
+    <script src="i18n.js"></script>
+    <script src="language-switcher.js"></script>
 </body>
 </html>

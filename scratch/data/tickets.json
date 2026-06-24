@@ -56,5 +56,26 @@
     ],
     "emailSentAt": "2026-06-21T10:44:34.142Z",
     "lastResponseAt": "2026-06-21T10:44:34.142Z"
+  },
+  {
+    "_id": "4f08uwxhfgc973g3wj0kpj",
+    "createdAt": "2026-06-23T17:14:28.580Z",
+    "updatedAt": "2026-06-23T17:17:06.720Z",
+    "name": "jonatha",
+    "email": "abc@gmail.com",
+    "phone": "52434864",
+    "company": "rr",
+    "subject": "technical",
+    "message": "hello",
+    "status": "Replied",
+    "replies": [
+      {
+        "sender": "Admin",
+        "message": "hi",
+        "timestamp": "2026-06-23T17:17:06.720Z"
+      }
+    ],
+    "emailSentAt": "2026-06-23T17:17:06.720Z",
+    "lastResponseAt": "2026-06-23T17:17:06.720Z"
   }
 ]

@@ -85,10 +85,10 @@ app.use(express.static(__dirname));
 
 // Force serve clients.html and partners.html
 app.get('/clients.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'clients.html'));
+  res.sendFile(path.join(__dirname, 'stitch_modern_belt_store_redesign', 'clients.html'));
 });
 app.get('/partners.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'partners.html'));
+  res.sendFile(path.join(__dirname, 'stitch_modern_belt_store_redesign', 'partners.html'));
 });
 
 // Then serve the redesign folder (if it exists)
@@ -703,7 +703,7 @@ app.put('/api/tickets/:id', requireAdmin, async (req, res) => {
 
     if (reply) {
       console.log("ADMIN REPLY RECEIVED");
-      
+
       const ticket = await db.SupportTicket.findById(req.params.id);
       if (!ticket) {
         return res.status(404).json({ error: 'Ticket not found' });
@@ -713,7 +713,7 @@ app.put('/api/tickets/:id', requireAdmin, async (req, res) => {
 
       const subject = `Support Response - Ticket #${ticket._id}`;
       const websiteUrl = 'http://localhost:3000';
-      
+
       const whatsappNumbers = [
         { number: '+966 13 832 2867', clean: '966138322867' },
       ];
@@ -939,7 +939,31 @@ app.get('/api/admin/analytics', requireAdmin, async (req, res) => {
 });
 
 // ============================================================
-// 5. Static Files & Server Start
+// 5. Language / i18n API – serves locale JSON files
+// ============================================================
+const LOCALES_DIR = path.join(__dirname, 'locales');
+
+app.get('/api/language/:lang', (req, res) => {
+  const lang = req.params.lang;
+  // Only allow 'en' and 'ar' to prevent path traversal
+  if (!['en', 'ar'].includes(lang)) {
+    return res.status(400).json({ error: 'Unsupported language. Use "en" or "ar".' });
+  }
+  const filePath = path.join(LOCALES_DIR, `${lang}.json`);
+  try {
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ error: `Locale file for "${lang}" not found.` });
+    }
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    res.json(data);
+  } catch (err) {
+    console.error(`❌ Error serving locale "${lang}":`, err.message);
+    res.status(500).json({ error: 'Failed to load language file.' });
+  }
+});
+
+// ============================================================
+// 6. Static Files & Server Start
 // ============================================================
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -124,7 +124,7 @@
             </div>
             <div class="flex items-center gap-6">
                 <div class="relative hidden lg:block">
-                    <input id="header-search" class="pl-4 pr-10 py-2 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-64 bg-surface-container-low" placeholder="Search Part Number..." data-i18n-placeholder="search_placeholder" type="text" onkeydown="if(event.key==='Enter') { document.getElementById('sidebar-search').value=this.value; document.getElementById('sidebar-search').dispatchEvent(new Event('input')); }"/>
+                    <input id="header-search" class="pl-4 pr-10 py-2 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-64 bg-surface-container-low" placeholder="Search Part Number..." type="text" onkeydown="if(event.key==='Enter') { document.getElementById('sidebar-search').value=this.value; document.getElementById('sidebar-search').dispatchEvent(new Event('input')); }"/>
                     <span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant">search</span>
                 </div>
                 <button class="bg-primary text-on-primary font-bold px-6 py-2 uppercase text-label-sm hover:bg-primary-container transition-all hidden lg:block" onclick="document.getElementById('floating-cart-btn').click();">VIEW CART</button>
@@ -138,14 +138,14 @@
             <aside class="w-full lg:w-80 shrink-0">
                 <div class="bg-surface-container-lowest rounded border border-outline-variant sticky top-24">
                     <div class="px-6 py-4 border-b border-outline-variant bg-surface-container-low">
-                        <h3 class="font-headline-lg text-lg font-bold text-primary" data-i18n="product_search">PRODUCT SEARCH</h3>
-                        <p class="font-technical-label text-[11px] uppercase text-on-surface-variant" data-i18n="filter_by_category">Filter by Category</p>
+                        <h3 class="font-headline-lg text-lg font-bold text-primary">PRODUCT SEARCH</h3>
+                        <p class="font-technical-label text-[11px] uppercase text-on-surface-variant">Filter by Category</p>
                     </div>
                     
                     <!-- Search Input inside sidebar -->
                     <div class="p-4 border-b border-outline-variant bg-surface-container-lowest">
                         <div class="relative">
-                            <input id="sidebar-search" class="w-full pl-4 pr-10 py-2.5 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm bg-surface-container-low transition-all" placeholder="Search product name or ref..." data-i18n-placeholder="search_product_placeholder"/>
+                            <input id="sidebar-search" class="w-full pl-4 pr-10 py-2.5 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm bg-surface-container-low transition-all" placeholder="Search product name or ref..."/>
                             <span class="material-symbols-outlined absolute right-3 top-3 text-on-surface-variant text-base">search</span>
                         </div>
                     </div>
@@ -168,7 +168,7 @@
                         <h2 id="active-category-title" class="font-headline-lg text-2xl text-primary font-bold uppercase mt-1">All Products</h2>
                     </div>
                     <div class="text-xs font-technical-label text-on-surface-variant bg-surface-container p-2 rounded border border-outline-variant self-start sm:self-center">
-                        <span data-i18n="total_found">TOTAL FOUND:</span> <span id="products-count" class="font-bold text-primary">0</span>
+                        TOTAL FOUND: <span id="products-count" class="font-bold text-primary">0</span>
                     </div>
                 </div>
 
@@ -180,9 +180,9 @@
                 <!-- Empty State -->
                 <div id="products-empty" class="hidden flex-col items-center justify-center text-center p-12 bg-surface-container-lowest border border-outline-variant rounded">
                     <span class="material-symbols-outlined text-6xl text-on-surface-variant opacity-60 mb-4">search_off</span>
-                    <h4 class="font-headline-lg text-lg uppercase text-primary font-bold" data-i18n="no_products_found">No Products Found</h4>
-                    <p class="text-sm text-on-surface-variant max-w-sm mt-2" data-i18n="no_products_desc">No components matched your current search parameters or category filter. Try clearing the search or choosing another category.</p>
-                    <button id="clear-filters-btn" class="mt-6 bg-primary text-on-primary font-bold px-6 py-3 uppercase text-xs hover:bg-primary-container transition-all" data-i18n="clear_filters">Clear Filters</button>
+                    <h4 class="font-headline-lg text-lg uppercase text-primary font-bold">No Products Found</h4>
+                    <p class="text-sm text-on-surface-variant max-w-sm mt-2">No components matched your current search parameters or category filter. Try clearing the search or choosing another category.</p>
+                    <button id="clear-filters-btn" class="mt-6 bg-primary text-on-primary font-bold px-6 py-3 uppercase text-xs hover:bg-primary-container transition-all">Clear Filters</button>
                 </div>
             </div>
         </section>
@@ -192,9 +192,9 @@
     <footer class="bg-primary dark:bg-on-primary-fixed text-on-primary mt-20">
         <div class="w-full py-32 px-margin-desktop grid grid-cols-12 gap-gutter max-w-container-max mx-auto">
             <div class="col-span-12 lg:col-span-4">
-                <span class="font-headline-lg text-headline-lg font-bold text-on-primary mb-6 block" data-i18n="brand">BELTS STORE</span>
+                <span class="font-headline-lg text-headline-lg font-bold text-on-primary mb-6 block">BELTS STORE</span>
                 <p class="text-surface-variant opacity-80 text-body-md max-w-sm mb-8">
-                    <span data-i18n="footer_description">Supplying global industries with premium power transmission components since 1994. Quality certified and engineering backed.</span>
+                    Supplying global industries with premium power transmission components since 1994. Quality certified and engineering backed.
                 </p>
                 <div class="flex gap-4">
                     <a class="w-10 h-10 border border-on-primary/20 flex items-center justify-center hover:bg-on-primary/10 transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
@@ -203,50 +203,44 @@
                 </div>
             </div>
             <div class="col-span-6 lg:col-span-2">
-                <h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold" data-i18n="footer_solutions">Solutions</h4>
+                <h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold">Solutions</h4>
                 <ul class="space-y-4 font-body-md text-sm">
-                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#" data-i18n="footer_automotive">Automotive</a></li>
-                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#" data-i18n="footer_mining_heavy_lift">Mining &amp; Heavy Lift</a></li>
-                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#" data-i18n="footer_agriculture">Agriculture</a></li>
-                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#" data-i18n="footer_food_processing">Food Processing</a></li>
+                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#">Automotive</a></li>
+                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#">Mining &amp; Heavy Lift</a></li>
+                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#">Agriculture</a></li>
+                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#">Food Processing</a></li>
                 </ul>
             </div>
             <div class="col-span-6 lg:col-span-2">
-                <h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold" data-i18n="footer_technical">Technical</h4>
+                <h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold">Technical</h4>
                 <ul class="space-y-4 font-body-md text-sm">
-                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#" data-i18n="footer_calculators">Calculators</a></li>
-                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#" data-i18n="footer_cad_drawings">CAD Drawings</a></li>
-                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#" data-i18n="footer_installation_guides">Installation Guides</a></li>
-                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#" data-i18n="technical_support">Technical Support</a></li>
+                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#">Calculators</a></li>
+                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#">CAD Drawings</a></li>
+                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#">Installation Guides</a></li>
+                    <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity" href="#">Technical Support</a></li>
                 </ul>
             </div>
             <div class="col-span-12 lg:col-span-4">
-                <h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold" data-i18n="newsletter">Industrial Newsletter</h4>
-                <p class="text-xs opacity-70 mb-4" data-i18n="newsletter_text">Receive technical updates and inventory arrivals.</p>
+                <h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold">Industrial Newsletter</h4>
+                <p class="text-xs opacity-70 mb-4">Receive technical updates and inventory arrivals.</p>
                 <div class="flex">
-                    <input class="bg-on-primary-fixed border-none text-on-primary p-3 flex-1 outline-none" placeholder="Email address" data-i18n-placeholder="email_placeholder" type="email"/>
-                    <button class="bg-secondary-fixed text-on-secondary-fixed px-6 font-bold hover:bg-secondary transition-colors" data-i18n="join">JOIN</button>
+                    <input class="bg-on-primary-fixed border-none text-on-primary p-3 flex-1 outline-none" placeholder="Email address" type="email"/>
+                    <button class="bg-secondary-fixed text-on-secondary-fixed px-6 font-bold hover:bg-secondary transition-colors">JOIN</button>
                 </div>
             </div>
         </div>
         <div class="border-t border-on-primary/10 py-8 px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="font-label-sm text-label-sm text-surface-variant opacity-60"><span data-i18n="copyright">© 2024 Belts Store. All Rights Reserved.</span></p>
-            <div class="flex gap-8 items-center">
-                <a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#" data-i18n="privacy_policy">Privacy Policy</a>
-                <a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#" data-i18n="terms_of_service">Terms of Service</a>
-                <a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#" data-i18n="shipping_returns">Shipping &amp; Returns</a>
-                <div class="flex gap-2 items-center border-l border-on-primary/20 pl-8">
-                    <button id="lang-en" class="lang-btn px-3 py-1 rounded text-xs font-bold transition-colors hover:bg-on-primary/10" data-lang="en" title="English">EN</button>
-                    <span class="text-on-primary/30 text-xs">/</span>
-                    <button id="lang-ar" class="lang-btn px-3 py-1 rounded text-xs font-bold transition-colors hover:bg-on-primary/10" data-lang="ar" title="العربية">AR</button>
-                </div>
+            <p class="font-label-sm text-label-sm text-surface-variant opacity-60">┬⌐ 2024 Belts Store. All Rights Reserved. Powering Industrial Excellence.</p>
+            <div class="flex gap-8">
+                <a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#">Privacy Policy</a>
+                <a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#">Terms of Service</a>
+                <a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#">Shipping &amp; Returns</a>
             </div>
         </div>
     </footer>
 
     <!-- JS Logic for Products Catalog Page -->
     <script>
-        // -------- CATEGORY HIERARCHY (your exact structure) --------
         const categoriesHierarchy = {
             "BELTS POWER TRANSMISSION": [
                 "V Belts",
@@ -257,186 +251,118 @@
                 "Special Belts",
                 "Measurement and Testing Tools"
             ],
-            "PULLEYS": [],
+            "PULLEYS": [
+                "Clamping Plates",
+                "Ribbed Belt Pulleys",
+                "Timing Belt Pulleys",
+                "V-Grooved Pulleys"
+            ],
             "CONVEYING ACCESSORIES": [],
-            "RUBBER": [],
-            "INDUSTRIAL INSULATION": [],
+            "RUBBER": [
+                "Rubber Sheets",
+                "Rubber Stud",
+                "White Rubber Sheets",
+                "Silicon Sheet",
+                "Rubber Sponge Sheet",
+                "Soft Sponge Rubber",
+                "Rubber Mounts",
+                "Rubber Glass Moulding",
+                "Rubber Metal Bonded",
+                "Rubber O-Ring Service Kit"
+            ],
+            "INDUSTRIAL INSULATION": [
+                "Gasket Graphite With Steel Sheet",
+                "S.S. Wire Mesh",
+                "Cork Gasket (Rubberized)",
+                "Gaskets Sheets (Non-Asbestos Heat Resistant)",
+                "Oil Resistant Jointing",
+                "Gasket Graphite With Steel Mesh",
+                "Heat Insulation Tape",
+                "Gland Packing Rope With Teflon",
+                "Graphite Gland Packing Rope",
+                "Packing Rope Square White",
+                "Packing Rope Cord Round",
+                "Heat Insulation Cloth"
+            ],
             "BEARINGS": {
-                "Radial Ball Bearings": [],
-                "Radial Roller Bearings": [],
-                "Thrust Ball Bearings": [],
-                "Bearing Units and Plummer Block Housing": []
+                "RADIAL BALL BEARINGS": [
+                    "Single Row Angular Contact Ball Bearings",
+                    "Self Aligning Ball Bearings",
+                    "Double Row Angular Contact Ball Bearings"
+                ],
+                "RADIAL ROLLER BEARINGS": [
+                    "Tapered Roller Bearings",
+                    "Spherical Roller Bearings",
+                    "Double Row Tapered Roller Bearings",
+                    "Double Row Cylindrical Roller Bearings",
+                    "Cylindrical Roller Bearings"
+                ],
+                "THRUST BALL BEARINGS": [
+                    "Double Direction Thrust Ball Bearings",
+                    "Double Direction Thrust Angular Contact Ball Bearings",
+                    "Thrust Ball Bearings"
+                ],
+                "BEARING UNITS AND PLUMMER BLOCK HOUSING": []
             },
             "TRANSMISSION CHAINS AND SPROCKETS": {
-                "Transmission chain": [],
-                "Sprockets": [],
-                "Couplings": []
-            }
+                "TRANSMISSION CHAIN": [
+                    "Connecting Links",
+                    "Offset Links",
+                    "Hollow Pin Chain",
+                    "Conveyor Chain With Attachment",
+                    "Conveyor Chain",
+                    "Stainless Steel Chains",
+                    "Leaf Chain",
+                    "Agricultural Roller Chain",
+                    "Silent Chain"
+                ],
+                "SPROCKETS": []
+            },
+            "COUPLINGS": [
+                "Chain Couplings"
+            ]
         };
 
-        // Slugify helper
+        // Slugify helper to match URL parameters/IDs
         function slugify(text) {
             return text.toString().toLowerCase()
-                .replace(/\s+/g, '-')
-                .replace(/[^\w\-]+/g, '')
-                .replace(/\-\-+/g, '-')
-                .replace(/^-+/, '')
-                .replace(/-+$/, '');
-        }
-
-        // -------- 🔥 BULLETPROOF DUPLICATE REMOVER (case‑insensitive, handles any number) --------
-        function cleanTitle(raw) {
-            if (!raw) return '';
-            let title = raw.trim().replace(/\s+/g, ' ');
-            let previous = '';
-            // Keep cleaning until no more change
-            while (title !== previous) {
-                previous = title;
-                const words = title.split(/\s+/);
-                const result = [];
-                let i = 0;
-                while (i < words.length) {
-                    let foundRepeat = false;
-                    // Try all possible repeat lengths (L)
-                    for (let L = 1; L <= (words.length - i) / 2; L++) {
-                        let same = true;
-                        for (let j = 0; j < L; j++) {
-                            if (words[i + j].toLowerCase() !== words[i + L + j].toLowerCase()) {
-                                same = false;
-                                break;
-                            }
-                        }
-                        if (same) {
-                            // Keep first L words, skip the next L (the duplicate)
-                            for (let j = 0; j < L; j++) {
-                                result.push(words[i + j]);
-                            }
-                            i += 2 * L;
-                            foundRepeat = true;
-                            break;
-                        }
-                    }
-                    if (!foundRepeat) {
-                        result.push(words[i]);
-                        i++;
-                    }
-                }
-                title = result.join(' ');
-            }
-            title = title.replace(/\s+/g, ' ').trim();
-            return title || raw;
+                .replace(/\s+/g, '-')           // Replace spaces with -
+                .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+                .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                .replace(/^-+/, '')             // Trim - from start
+                .replace(/-+$/, '');            // Trim - from end
         }
 
         let allProducts = [];
         let currentFilter = { category: null, subcategory: null, subsubcategory: null, search: "" };
-        console.log('✅ Latest version loaded - duplicates will be removed');
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Load products from local module
-            BeltsStore.loadProducts()
+            // Load raw products data
+            fetch('products_data.json')
+                .then(response => response.json())
                 .then(data => {
-                    console.log('First product raw:', data[0]);
-                    console.log('First product name:', data[0]?.name || 'undefined');
-                    allProducts = data.map((product, index) => {
-                        // -------- DEDUPLICATE BREADCRUMBS (case‑insensitive) and CLEAN each field --------
-                        const breadcrumbs = [];
-                        const seen = new Set();
-                        
-                        // Clean category, subcategory, subSubcategory before adding
-                        const cleanCat = product.category ? cleanTitle(product.category.trim()) : '';
-                        const cleanSub = product.subcategory ? cleanTitle(product.subcategory.trim()) : '';
-                        const cleanSubSub = product.subSubcategory ? cleanTitle(product.subSubcategory.trim()) : '';
-
-                        if (cleanCat) {
-                            if (!seen.has(cleanCat.toLowerCase())) {
-                                breadcrumbs.push(cleanCat);
-                                seen.add(cleanCat.toLowerCase());
-                            }
-                        }
-                        if (cleanSub && cleanSub !== cleanCat) {
-                            if (!seen.has(cleanSub.toLowerCase())) {
-                                breadcrumbs.push(cleanSub);
-                                seen.add(cleanSub.toLowerCase());
-                            }
-                        }
-                        if (cleanSubSub && cleanSubSub !== cleanSub && cleanSubSub !== cleanCat) {
-                            if (!seen.has(cleanSubSub.toLowerCase())) {
-                                breadcrumbs.push(cleanSubSub);
-                                seen.add(cleanSubSub.toLowerCase());
-                            }
-                        }
-
-                        // -------- Clean title (remove repeated phrases) --------
-                        const rawName = product.productName || product.name || product.title || '';
-                        const originalName = rawName.trim() || 'Unnamed Product';
-                        const title = cleanTitle(originalName);
-                        
-                        // Log the cleaning result – only for first few products to avoid spam
-                        if (index < 5 && originalName !== title) {
-                            console.log(`🧹 Cleaned #${index}: "${originalName}" → "${title}"`);
-                        }
-
-                        // -------- IMAGE HANDLING: support both 'image' and 'images' array --------
-                        let image = null;
-                        if (product.images && Array.isArray(product.images) && product.images.length > 0) {
-                            image = product.images[0];
-                        } else if (product.image && product.image.trim() !== '') {
-                            image = product.image;
-                        }
-
-                        if (image) {
-                            if (!image.startsWith('http') && !image.startsWith('//') && !image.startsWith('/')) {
-                                image = '/' + image;
-                            }
-                        } else {
-                            image = 'https://belts-store.com/wp-content/uploads/2025/09/BELTS-STORE_en-1.svg';
-                        }
-
-                        // Parse specifications
-                        let specs = product.specifications || {};
-                        if (typeof specs === 'string') {
-                            try { specs = JSON.parse(specs); } catch(e) { specs = { 'Description': specs }; }
-                        }
-
-                        return {
-                            id: index,
-                            title: title,
-                            breadcrumbs: breadcrumbs,
-                            image: image,
-                            short_description: product.shortDescription || 'Industrial grade component designed for high reliability.',
-                            specs: specs,
-                            sku: product.sku || null,
-                            originalName: originalName // for debugging
-                        };
-                    });
-
+                    allProducts = data;
                     renderCategories();
-
-                    // URL filters
+                    
+                    // Check URL for preselected filters
                     const params = new URLSearchParams(window.location.search);
                     const catParam = params.get('cat');
                     const subcatParam = params.get('subcat');
+                    
                     if (catParam) {
                         currentFilter.category = catParam;
-                        if (subcatParam) currentFilter.subcategory = subcatParam;
+                        if (subcatParam) {
+                            currentFilter.subcategory = subcatParam;
+                        }
                     }
-
+                    
                     filterAndRenderProducts();
                 })
                 .catch(error => {
-                    console.error("Error loading products from data file:", error);
-                    const errorTitle = (window.i18n && window.i18n.t) ? window.i18n.t('error_load_products') : 'Could not load products';
-                    const errorDesc = (window.i18n && window.i18n.t) ? window.i18n.t('error_backend_not_running') : 'Please ensure products_data.json is accessible.';
-                    document.getElementById('products-grid').innerHTML = `
-                        <div class="col-span-full text-center p-12 bg-surface-container-lowest border border-outline-variant rounded">
-                            <span class="material-symbols-outlined text-6xl text-error opacity-60 mb-4">error</span>
-                            <h4 class="font-headline-lg text-lg uppercase text-error font-bold">${errorTitle}</h4>
-                            <p class="text-sm text-on-surface-variant max-w-sm mx-auto mt-2">${errorDesc}</p>
-                        </div>
-                    `;
+                    console.error("Error loading product catalog JSON:", error);
                 });
 
-            // Search handlers
+            // Search Handlers
             const sideSearch = document.getElementById('sidebar-search');
             const headSearch = document.getElementById('header-search');
 
@@ -461,64 +387,15 @@
             });
         });
 
-        function tLabel(text) {
-            if (window.i18n && typeof window.i18n.t === 'function') {
-                const map = {
-                    "BELTS POWER TRANSMISSION": "belt_power_transmission_cat",
-                    "PULLEYS": "nav_cat_pulleys",
-                    "CONVEYING ACCESSORIES": "nav_cat_conveying",
-                    "RUBBER": "nav_cat_rubber",
-                    "INDUSTRIAL INSULATION": "nav_cat_insulation",
-                    "BEARINGS": "nav_cat_bearings",
-                    "TRANSMISSION CHAINS AND SPROCKETS": "nav_cat_chains",
-                    "V Belts": "nav_sub_vbelts",
-                    "Round Belts": "nav_sub_roundbelts",
-                    "Measurement and Testing Tools": "nav_sub_measurement",
-                    "Ribbed Belts": "nav_sub_ribbed",
-                    "Emergency and Transport Belts": "nav_sub_emergency",
-                    "Timing Belts": "nav_sub_timing",
-                    "Special Belts": "nav_sub_special",
-                    "RADIAL BALL BEARINGS": "nav_sub_radialball",
-                    "RADIAL ROLLER BEARINGS": "nav_sub_radialroller",
-                    "THRUST BALL BEARINGS": "nav_sub_thrust",
-                    "ALL PRODUCTS": "view_all"
-                };
-                if (map[text]) {
-                    let mapped = window.i18n.t(map[text]);
-                    if (mapped) return mapped;
-                }
-                let genericKey = text.toLowerCase().replace(/[^a-z0-9]/g, '_');
-                let generic = window.i18n.t(genericKey);
-                if (generic) return generic;
-            }
-            return text;
-        }
-
-        // Hook up language change
-        document.addEventListener('languageChanged', () => {
-            renderCategories();
-            filterAndRenderProducts();
-            
-            // Re-translate static elements
-            document.getElementById('active-category-title').innerText = currentFilter.category ? tLabel(currentFilter.category) : tLabel("ALL PRODUCTS");
-            
-            const bcText = currentFilter.subsubcategory ? tLabel(currentFilter.subsubcategory) : 
-                          (currentFilter.subcategory ? tLabel(currentFilter.subcategory) : 
-                          (currentFilter.category ? tLabel(currentFilter.category) : tLabel("ALL PRODUCTS")));
-            
-            document.getElementById('category-breadcrumbs').innerHTML = 
-                `<span data-i18n="catalog">Catalog</span> <span class="material-symbols-outlined text-xs">chevron_right</span> <span>${bcText}</span>`;
-        });
-
-        // Render category sidebar – works with the new hierarchy
+        // Dynamic category list builder
         function renderCategories() {
             const container = document.getElementById('category-accordion');
             container.innerHTML = "";
 
-            // "ALL PRODUCTS" button
+            // Header for "All Products"
             const allBtn = document.createElement('button');
             allBtn.className = 'w-full text-left px-4 py-2.5 text-xs font-technical-label uppercase font-bold text-on-surface-variant hover:bg-surface-container-high rounded flex items-center gap-3 transition-colors';
-            allBtn.innerHTML = `<span class="material-symbols-outlined text-sm">grid_view</span> ${tLabel("ALL PRODUCTS")}`;
+            allBtn.innerHTML = `<span class="material-symbols-outlined text-sm">grid_view</span> ALL PRODUCTS`;
             allBtn.addEventListener('click', () => {
                 currentFilter.category = null;
                 currentFilter.subcategory = null;
@@ -528,7 +405,7 @@
             });
             container.appendChild(allBtn);
 
-            // Iterate over main categories
+            // Populate hierarchy
             Object.keys(categoriesHierarchy).forEach(cat => {
                 const catId = slugify(cat);
                 const subObj = categoriesHierarchy[cat];
@@ -542,14 +419,19 @@
 
                 const catBtn = document.createElement('button');
                 catBtn.className = 'cat-link text-left px-4 py-2 flex-1 text-xs font-technical-label uppercase font-semibold text-on-surface hover:bg-surface-container-high rounded transition-all truncate';
-                catBtn.innerText = tLabel(cat);
+                catBtn.innerText = cat;
                 catBtn.addEventListener('click', () => {
                     currentFilter.category = cat;
                     currentFilter.subcategory = null;
                     currentFilter.subsubcategory = null;
+                    
+                    // Highlight selected
                     document.querySelectorAll('.cat-link').forEach(l => l.classList.remove('bg-primary/10', 'text-primary', 'font-bold'));
                     catBtn.classList.add('bg-primary/10', 'text-primary', 'font-bold');
+                    
                     filterAndRenderProducts();
+                    
+                    // Toggle sublist if it exists
                     if (hasSubs) {
                         const sublist = document.getElementById(`sub-${catId}`);
                         sublist.classList.toggle('hidden');
@@ -573,17 +455,18 @@
 
                 itemDiv.appendChild(titleRow);
 
-                // Subcategories
+                // Subcategories wrapper
                 if (hasSubs) {
                     const subList = document.createElement('div');
                     subList.id = `sub-${catId}`;
                     subList.className = 'hidden pl-4 pr-2 py-1 space-y-1 bg-surface-container-low/50 rounded mt-0.5';
 
                     if (Array.isArray(subObj)) {
+                        // V Belts, Round Belts, etc.
                         subObj.forEach(subcat => {
                             const subBtn = document.createElement('button');
                             subBtn.className = 'cat-link w-full text-left px-3 py-1.5 text-xs text-on-surface-variant hover:text-primary transition-colors truncate';
-                            subBtn.innerText = tLabel(subcat);
+                            subBtn.innerText = subcat;
                             subBtn.addEventListener('click', () => {
                                 currentFilter.category = cat;
                                 currentFilter.subcategory = subcat;
@@ -595,6 +478,7 @@
                             subList.appendChild(subBtn);
                         });
                     } else {
+                        // RADIAL BALL BEARINGS, RADIAL ROLLER BEARINGS, etc.
                         Object.keys(subObj).forEach(subcat => {
                             const subcatId = slugify(subcat);
                             const subSubArray = subObj[subcat];
@@ -669,43 +553,49 @@
             });
         }
 
-        // Filter and render – unchanged except using the new hierarchy
+        // Filter and Render logic
         function filterAndRenderProducts() {
             const grid = document.getElementById('products-grid');
             const empty = document.getElementById('products-empty');
             const activeTitle = document.getElementById('active-category-title');
             const breadcrumbs = document.getElementById('category-breadcrumbs');
             
-            // Get current language from i18n or localStorage
-            const currentLang = (window.i18n && window.i18n.getCurrentLang && window.i18n.getCurrentLang()) || 
-                              localStorage.getItem('site_lang') || 'en';
-
+            // Filter logic
             const filtered = allProducts.filter(product => {
+                // Category match
                 if (currentFilter.category) {
+                    // Check if currentFilter.category is in breadcrumbs (case insensitive)
                     const matchesCat = product.breadcrumbs.some(b => b.toLowerCase().trim() === currentFilter.category.toLowerCase().trim());
                     if (!matchesCat) return false;
                 }
+                // Subcategory match
                 if (currentFilter.subcategory) {
                     const matchesSub = product.breadcrumbs.some(b => b.toLowerCase().trim() === currentFilter.subcategory.toLowerCase().trim());
                     if (!matchesSub) return false;
                 }
+                // Subsubcategory match
                 if (currentFilter.subsubcategory) {
                     const matchesSubSub = product.breadcrumbs.some(b => b.toLowerCase().trim() === currentFilter.subsubcategory.toLowerCase().trim());
                     if (!matchesSubSub) return false;
                 }
+                // Search match
                 if (currentFilter.search.trim()) {
                     const query = currentFilter.search.toLowerCase().trim();
-                    const title = currentLang === 'ar' && product.title_ar ? product.title_ar : product.title;
-                    const inTitle = title.toLowerCase().includes(query);
-                    const desc = currentLang === 'ar' && product.short_description_ar ? product.short_description_ar : product.short_description;
-                    const rawShort = desc.replace(/<[^>]+>/g, '').toLowerCase();
+                    const inTitle = product.title.toLowerCase().includes(query);
+                    
+                    // Search in short description
+                    const rawShort = product.short_description.replace(/<[^>]+>/g, '').toLowerCase();
                     const inShort = rawShort.includes(query);
+                    
+                    // Search in specs values
                     const inSpecs = Object.values(product.specs).some(v => v.toLowerCase().includes(query));
+                    
                     return inTitle || inShort || inSpecs;
                 }
                 return true;
             });
 
+            // Update Breadcrumbs & Title
             let pathHtml = `<span>Catalog</span>`;
             let activeTitleText = "All Products";
 
@@ -721,7 +611,7 @@
                 pathHtml += ` <span class="material-symbols-outlined text-xs">chevron_right</span> <span>${currentFilter.subsubcategory}</span>`;
                 activeTitleText = currentFilter.subsubcategory;
             }
-
+            
             breadcrumbs.innerHTML = pathHtml;
             activeTitle.innerText = activeTitleText;
             document.getElementById('products-count').innerText = filtered.length;
@@ -738,46 +628,29 @@
             empty.classList.remove('flex');
             grid.classList.remove('hidden');
 
-            // Build product cards – exactly the same as your original
-            grid.innerHTML = filtered.map((product) => {
-                // Get translated title and description based on current language
-                const productTitle = currentLang === 'ar' && product.title_ar ? product.title_ar : product.title;
-                const productDesc = currentLang === 'ar' && product.short_description_ar ? product.short_description_ar : product.short_description;
+            grid.innerHTML = filtered.map((product, idx) => {
+                const productIndex = allProducts.findIndex(p => p.url === product.url);
+                const shortDescText = product.short_description ? product.short_description.replace(/<[^>]+>/g, ' ').substring(0, 100) + "..." : "Industrial grade component designed for high reliability.";
                 
-                let ref = product.sku;
-                if (!ref || ref === 'N/A') {
-                    ref = product.specs["DIN"] || product.specs["ISO"] || product.title.replace(/\s+/g, '-').toUpperCase();
-                }
+                // Get a nice display reference
+                const ref = product.specs["DIN"] || product.specs["ISO"] || (product.url.split('/product/')[1] ? product.url.split('/product/')[1].replace(/\//g, '').toUpperCase() : "BT-GENERIC");
                 const cleanRef = ref.length > 25 ? ref.substring(0, 22) + "..." : ref;
-                let rawDescText = productDesc
-                    ? productDesc.replace(/<[^>]+>/g, ' ')
-                    : "Industrial grade component designed for high reliability.";
-                
-                // Translate the product title inside the description if applicable
-                if (currentLang === 'ar' && product.title && productTitle !== product.title) {
-                    // Escape special characters in title for RegExp
-                    const safeTitle = product.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                    rawDescText = rawDescText.replace(new RegExp(safeTitle, 'gi'), productTitle);
-                }
-                
-                const shortDescText = rawDescText.length > 100 ? rawDescText.substring(0, 100) + "..." : rawDescText;
-                const detailLink = `product-detail.html?id=${product.id}`;
 
                 return `
                     <div class="flex flex-col bg-surface-container-lowest border border-outline-variant overflow-hidden group rounded-lg transition-all hover:shadow-lg hover:border-primary">
                         <!-- Product Image -->
-                        <a href="${detailLink}" class="h-56 relative overflow-hidden bg-surface-container-low border-b border-outline-variant flex items-center justify-center p-4">
-                            <img class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105" src="${product.image}" alt="${productTitle}" onerror="this.src='https://belts-store.com/wp-content/uploads/2025/09/BELTS-STORE_en-1.svg'"/>
+                        <a href="product-detail.html?id=${productIndex}" class="h-56 relative overflow-hidden bg-surface-container-low border-b border-outline-variant flex items-center justify-center p-4">
+                            <img class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105" src="${product.image || 'https://belts-store.com/wp-content/uploads/2025/09/BELTS-STORE_en-1.svg'}" alt="${product.title}"/>
                         </a>
                         
                         <!-- Product Info -->
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <span class="px-2 py-1 bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold uppercase rounded font-technical-label">
-                                    ${tLabel(product.breadcrumbs[1] || product.breadcrumbs[0] || 'Component')}
+                                    ${product.breadcrumbs[1] || product.breadcrumbs[0] || 'Component'}
                                 </span>
                                 <h4 class="font-headline-lg text-base uppercase text-primary font-bold mt-2 truncate">
-                                    <a href="${detailLink}" class="hover:underline">${productTitle}</a>
+                                    <a href="product-detail.html?id=${productIndex}" class="hover:underline">${product.title}</a>
                                 </h4>
                                 <p class="text-xs text-on-surface-variant mt-2 leading-relaxed h-16 overflow-hidden">
                                     ${shortDescText}
@@ -786,9 +659,8 @@
                             <div class="mt-6 flex justify-between items-center border-t border-outline-variant/30 pt-4">
                                 <span class="font-technical-label text-primary font-bold text-xs truncate max-w-[120px]" title="${ref}">Ref: ${cleanRef}</span>
                                 <button class="bg-primary text-on-primary px-4 py-2.5 text-[10px] font-bold uppercase hover:bg-primary-container transition-all add-to-cart-btn" 
-                                    data-i18n="add_to_cart"
-                                    data-product-id="${product.id}" 
-                                    data-product-name="${productTitle}"
+                                    data-product-id="ref-${productIndex}" 
+                                    data-product-name="${product.title}"
                                     data-product-image="${product.image}"
                                     data-product-ref="${ref}">ADD TO CART</button>
                             </div>
@@ -798,10 +670,8 @@
             }).join('');
         }
     </script>
-<script src="products-data.js"></script>
-<script src="/i18n.js"></script>
-<script src="language-switcher.js"></script>
-<script src="nav-component.js?v=7"></script>
+    <script src="products-data.js"></script>
+    <script src="nav-component.js"></script>
     <script src="cart.js"></script>
 </body>
 </html>

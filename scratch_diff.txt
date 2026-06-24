@@ -1,0 +1,450 @@
+﻿diff --git a/stitch_modern_belt_store_redesign/index.html b/stitch_modern_belt_store_redesign/index.html
+index 46414a7..9e7d76e 100644
+--- a/stitch_modern_belt_store_redesign/index.html
++++ b/stitch_modern_belt_store_redesign/index.html
+@@ -285,17 +285,15 @@
+                         </div>
+                     </div>
+ 
+-                    <!-- Bottom Row: Buttons (placed below the photo, wide/rectangular) -->
+                     <div class="flex flex-col sm:flex-row gap-4 mt-8 w-full max-w-[640px]">
+                         <a href="products.html"
+                             class="flex-1 bg-primary text-on-primary p-4 h-16 font-bold flex flex-col items-center justify-center hover:translate-x-1 transition-transform text-center text-sm uppercase leading-tight">
+-                            <span class="flex items-center gap-1.5 justify-center">BROWSE CATALOG <span
++                            <span class="flex items-center gap-1.5 justify-center" data-i18n="browse_catalog_btn">BROWSE CATALOG <span
+                                     class="material-symbols-outlined text-base">arrow_forward</span></span>
+                         </a>
+                         <a href="products.html"
+                             class="flex-1 border-2 border-primary text-primary p-4 h-16 font-bold flex flex-col items-center justify-center hover:bg-primary/5 transition-colors text-center text-sm uppercase leading-tight">
+-                            <span>VIEW</span>
+-                            <span>SPECIFICATIONS</span>
++                            <span data-i18n="view_specs_btn">VIEW SPECIFICATIONS</span>
+                         </a>
+                     </div>
+                 </div>
+@@ -305,14 +303,14 @@
+         <section class="border-b border-outline-variant bg-surface-container-low">
+             <div class="max-w-container-max mx-auto px-margin-desktop py-14 grid grid-cols-1 md:grid-cols-4 gap-8">
+                 <div class="md:col-span-2" data-aos="fade-right" data-aos-duration="700">
+-                    <span class="font-technical-label text-xs uppercase tracking-widest text-secondary block mb-2">Since
++                    <span class="font-technical-label text-xs uppercase tracking-widest text-secondary block mb-2" data-i18n="since_1994">Since
+                         1994 ┬╖ ISO 9001:2015</span>
+-                    <h2 class="font-headline-lg text-3xl text-primary font-bold uppercase leading-tight">Your Trusted
++                    <h2 class="font-headline-lg text-3xl text-primary font-bold uppercase leading-tight" data-i18n="trusted_partner">Your Trusted
+                         Industrial Power Transmission Partner</h2>
+                 </div>
+                 <div class="md:col-span-2 flex flex-col justify-center" data-aos="fade-left" data-aos-duration="700"
+                     data-aos-delay="100">
+-                    <p class="text-on-surface-variant text-sm leading-relaxed">Belts Store Trading delivers superior
++                    <p class="text-on-surface-variant text-sm leading-relaxed" data-i18n="company_description">Belts Store Trading delivers superior
+                         power transmission components to the regional industrial sector ΓÇö governments, oil &amp; gas,
+                         mining, manufacturing, and private enterprise. Importing from Germany, Japan, Spain, Taiwan,
+                         China, and India.</p>
+@@ -321,7 +319,7 @@
+                             <span class="font-display-lg text-3xl font-bold text-primary block counter-val"
+                                 data-target="89">0</span>
+                             <span
+-                                class="font-technical-label text-[10px] uppercase tracking-wider text-on-surface-variant">Years
++                                class="font-technical-label text-[10px] uppercase tracking-wider text-on-surface-variant" data-i18n="years_experience">Years
+                                 Experience</span>
+                         </div>
+                         <div class="w-px bg-outline-variant"></div>
+@@ -329,14 +327,14 @@
+                             <span class="font-display-lg text-3xl font-bold text-primary block counter-val"
+                                 data-target="7">0</span>
+                             <span
+-                                class="font-technical-label text-[10px] uppercase tracking-wider text-on-surface-variant">Source
++                                class="font-technical-label text-[10px] uppercase tracking-wider text-on-surface-variant" data-i18n="source_countries">Source
+                                 Countries</span>
+                         </div>
+                         <div class="w-px bg-outline-variant"></div>
+                         <div class="text-center">
+                             <span class="font-display-lg text-3xl font-bold text-primary block">ISO</span>
+                             <span
+-                                class="font-technical-label text-[10px] uppercase tracking-wider text-on-surface-variant">9001:2015
++                                class="font-technical-label text-[10px] uppercase tracking-wider text-on-surface-variant" data-i18n="iso_certified">9001:2015
+                                 Certified</span>
+                         </div>
+                     </div>
+@@ -349,51 +347,51 @@
+             <aside
+                 class="hidden lg:flex flex-col gap-unit py-gutter sticky top-24 bg-surface-container-lowest dark:bg-surface-container-low rounded-xl w-72 h-fit border border-outline-variant">
+                 <div class="px-6 py-4 border-b border-outline-variant">
+-                    <h3 class="font-headline-lg text-xl font-bold text-primary">PRODUCT CATEGORIES</h3>
+-                    <p class="font-technical-label text-xs uppercase text-on-surface-variant">Technical Specifications
++                    <h3 class="font-headline-lg text-xl font-bold text-primary" data-i18n="sidebar_product_categories">PRODUCT CATEGORIES</h3>
++                    <p class="font-technical-label text-xs uppercase text-on-surface-variant" data-i18n="sidebar_technical_specs">Technical Specifications
+                     </p>
+                 </div>
+                 <div class="p-2 flex flex-col gap-1">
+                     <a class="flex items-center gap-4 px-4 py-3 bg-primary text-on-primary font-bold rounded-lg transition-all"
+                         href="products.html?cat=BELTS+POWER+TRANSMISSION">
+                         <span class="material-symbols-outlined">settings_input_component</span>
+-                        <span class="font-technical-label text-technical-label uppercase">Belts Power
++                        <span class="font-technical-label text-technical-label uppercase" data-i18n="sidebar_belts">Belts Power
+                             Transmission</span>
+                     </a>
+                     <a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors"
+                         href="products.html?cat=PULLEYS">
+                         <span class="material-symbols-outlined">settings_backup_restore</span>
+-                        <span class="font-technical-label text-technical-label uppercase">Pulleys</span>
++                        <span class="font-technical-label text-technical-label uppercase" data-i18n="sidebar_pulleys">Pulleys</span>
+                     </a>
+                     <a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors"
+                         href="products.html?cat=CONVEYING+ACCESSORIES">
+                         <span class="material-symbols-outlined">conveyor_belt</span>
+-                        <span class="font-technical-label text-technical-label uppercase">Conveying Accessories</span>
++                        <span class="font-technical-label text-technical-label uppercase" data-i18n="sidebar_conveying">Conveying Accessories</span>
+                     </a>
+                     <a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors"
+                         href="products.html?cat=RUBBER">
+                         <span class="material-symbols-outlined">opacity</span>
+-                        <span class="font-technical-label text-technical-label uppercase">Rubber</span>
++                        <span class="font-technical-label text-technical-label uppercase" data-i18n="sidebar_rubber">Rubber</span>
+                     </a>
+                     <a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors"
+                         href="products.html?cat=INDUSTRIAL+INSULATION">
+                         <span class="material-symbols-outlined">heat_pump</span>
+-                        <span class="font-technical-label text-technical-label uppercase">Industrial Insulation</span>
++                        <span class="font-technical-label text-technical-label uppercase" data-i18n="sidebar_insulation">Industrial Insulation</span>
+                     </a>
+                     <a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors"
+                         href="products.html?cat=BEARINGS">
+                         <span class="material-symbols-outlined">radio_button_checked</span>
+-                        <span class="font-technical-label text-technical-label uppercase">Bearings</span>
++                        <span class="font-technical-label text-technical-label uppercase" data-i18n="sidebar_bearings">Bearings</span>
+                     </a>
+                     <a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors"
+                         href="products.html?cat=TRANSMISSION+CHAINS+AND+SPROCKETS">
+                         <span class="material-symbols-outlined">link</span>
+-                        <span class="font-technical-label text-technical-label uppercase">Transmission Chains</span>
++                        <span class="font-technical-label text-technical-label uppercase" data-i18n="sidebar_chains">Transmission Chains</span>
+                     </a>
+                     <a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors"
+                         href="products.html?cat=TRANSMISSION+CHAINS+AND+SPROCKETS">
+                         <span class="material-symbols-outlined">settings</span>
+-                        <span class="font-technical-label text-technical-label uppercase">Sprockets</span>
++                        <span class="font-technical-label text-technical-label uppercase" data-i18n="sidebar_sprockets">Sprockets</span>
+                     </a>
+                 </div>
+             </aside>
+@@ -402,7 +400,7 @@
+                 <!-- Category Grid -->
+                 <section data-aos="fade-up" data-aos-duration="600">
+                     <div class="flex items-center gap-4 mb-8">
+-                        <h2 class="font-headline-lg text-headline-lg text-primary">BROWSE CATEGORIES</h2>
++                        <h2 class="font-headline-lg text-headline-lg text-primary" data-i18n="browse_categories">BROWSE CATEGORIES</h2>
+                         <div class="flex-1 h-px bg-outline-variant"></div>
+                     </div>
+                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter">
+@@ -416,10 +414,10 @@
+                             </div>
+                             <div class="absolute inset-0 p-8 flex flex-col justify-end text-on-primary">
+                                 <span
+-                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-on-primary/30 w-fit">Power
++                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-on-primary/30 w-fit" data-i18n="power_drive">Power
+                                     Drive</span>
+-                                <h3 class="font-headline-lg text-2xl uppercase">Belt Power Transmission</h3>
+-                                <p class="text-sm opacity-80 mt-2">V Belts, Timing Belts &amp; Special Belts</p>
++                                <h3 class="font-headline-lg text-2xl uppercase" data-i18n="belts_power_transmission">Belt Power Transmission</h3>
++                                <p class="text-sm opacity-80 mt-2" data-i18n="belt_power_transmission_desc">V Belts, Timing Belts &amp; Special Belts</p>
+                             </div>
+                         </a>
+                         <!-- Pulleys -->
+@@ -432,10 +430,10 @@
+                             </div>
+                             <div class="absolute inset-0 p-8 flex flex-col justify-end text-on-primary">
+                                 <span
+-                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-on-primary/30 w-fit">Series
++                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-on-primary/30 w-fit" data-i18n="series_p400">Series
+                                     P-400</span>
+-                                <h3 class="font-headline-lg text-2xl uppercase">Pulleys</h3>
+-                                <p class="text-sm opacity-80 mt-2">Precision Grooved Performance</p>
++                                <h3 class="font-headline-lg text-2xl uppercase" data-i18n="pulleys">Pulleys</h3>
++                                <p class="text-sm opacity-80 mt-2" data-i18n="pulleys_desc">Precision Grooved Performance</p>
+                             </div>
+                         </a>
+                         <!-- Conveying Accessories -->
+@@ -448,10 +446,10 @@
+                             </div>
+                             <div class="absolute inset-0 p-8 flex flex-col justify-end text-on-primary">
+                                 <span
+-                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-on-primary/30 w-fit">Material
++                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-on-primary/30 w-fit" data-i18n="material_flow">Material
+                                     Flow</span>
+-                                <h3 class="font-headline-lg text-2xl uppercase">Conveying Accessories</h3>
+-                                <p class="text-sm opacity-80 mt-2">Modular Handling Systems</p>
++                                <h3 class="font-headline-lg text-2xl uppercase" data-i18n="conveying_accessories">Conveying Accessories</h3>
++                                <p class="text-sm opacity-80 mt-2" data-i18n="conveying_accessories_desc">Modular Handling Systems</p>
+                             </div>
+                         </a>
+                         <!-- Rubber -->
+@@ -464,9 +462,9 @@
+                             </div>
+                             <div class="absolute inset-0 p-8 flex flex-col justify-end text-on-primary">
+                                 <span
+-                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-on-primary/30 w-fit">Vulcanized</span>
+-                                <h3 class="font-headline-lg text-2xl uppercase">Rubber</h3>
+-                                <p class="text-sm opacity-80 mt-2">High-Resilience Products</p>
++                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-on-primary/30 w-fit" data-i18n="vulcanized">Vulcanized</span>
++                                <h3 class="font-headline-lg text-2xl uppercase" data-i18n="rubber">Rubber</h3>
++                                <p class="text-sm opacity-80 mt-2" data-i18n="rubber_desc">High-Resilience Products</p>
+                             </div>
+                         </a>
+                         <!-- Industrial Insulation -->
+@@ -479,10 +477,10 @@
+                             </div>
+                             <div class="absolute inset-0 p-8 flex flex-col justify-end text-white">
+                                 <span
+-                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-white/30 w-fit">Thermal
++                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-white/30 w-fit" data-i18n="thermal_sealing">Thermal
+                                     &amp; Sealing</span>
+-                                <h3 class="font-headline-lg text-2xl uppercase">Industrial Insulation</h3>
+-                                <p class="text-sm opacity-80 mt-2">Gaskets, Felt &amp; Packing Ropes</p>
++                                <h3 class="font-headline-lg text-2xl uppercase" data-i18n="industrial_insulation">Industrial Insulation</h3>
++                                <p class="text-sm opacity-80 mt-2" data-i18n="industrial_insulation_desc">Gaskets, Felt &amp; Packing Ropes</p>
+                             </div>
+                         </a>
+                         <!-- Bearings -->
+@@ -495,10 +493,10 @@
+                             </div>
+                             <div class="absolute inset-0 p-8 flex flex-col justify-end text-on-primary">
+                                 <span
+-                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-on-primary/30 w-fit">SKF
++                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-on-primary/30 w-fit" data-i18n="skf_fag_nsk">SKF
+                                     ┬╖ FAG ┬╖ NSK</span>
+-                                <h3 class="font-headline-lg text-2xl uppercase">Bearings</h3>
+-                                <p class="text-sm opacity-80 mt-2">Ball, Roller &amp; Thrust Bearings</p>
++                                <h3 class="font-headline-lg text-2xl uppercase" data-i18n="bearings">Bearings</h3>
++                                <p class="text-sm opacity-80 mt-2" data-i18n="bearings_desc">Ball, Roller &amp; Thrust Bearings</p>
+                             </div>
+                         </a>
+                         <!-- Transmission Chains -->
+@@ -511,10 +509,10 @@
+                             </div>
+                             <div class="absolute inset-0 p-8 flex flex-col justify-end text-on-primary">
+                                 <span
+-                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-on-primary/30 w-fit">DIN
++                                    class="font-technical-label text-xs uppercase tracking-widest mb-2 border-b border-on-primary/30 w-fit" data-i18n="din_ansi">DIN
+                                     ┬╖ ANSI</span>
+-                                <h3 class="font-headline-lg text-2xl uppercase">Transmission Chains &amp; Sprockets</h3>
+-                                <p class="text-sm opacity-80 mt-2">Chains, Couplings &amp; Sprockets</p>
++                                <h3 class="font-headline-lg text-2xl uppercase" data-i18n="transmission_chains">Transmission Chains &amp; Sprockets</h3>
++                                <p class="text-sm opacity-80 mt-2" data-i18n="transmission_chains_desc">Chains, Couplings &amp; Sprockets</p>
+                             </div>
+                         </a>
+                     </div>
+@@ -522,7 +520,7 @@
+                 <!-- Technical Advantage Section (Bento Grid) -->
+                 <section class="bg-surface-container p-12 rounded-lg" data-aos="fade-up" data-aos-duration="700">
+                     <div class="text-center mb-12">
+-                        <h2 class="font-headline-lg text-headline-lg text-primary uppercase">The Technical Advantage
++                        <h2 class="font-headline-lg text-headline-lg text-primary uppercase" data-i18n="technical_advantage">The Technical Advantage
+                         </h2>
+                         <p class="text-on-surface-variant max-w-xl mx-auto">Engineered for durability, our transmission
+                             solutions undergo rigorous testing to ensure operational certainty.</p>
+@@ -533,8 +531,8 @@
+                             <span
+                                 class="material-symbols-outlined text-4xl text-primary mb-4 group-hover:scale-110 transition-transform inline-block"
+                                 style="font-variation-settings: 'FILL' 1;">verified</span>
+-                            <h4 class="font-headline-lg text-xl uppercase mb-2">Precision Load Ratings</h4>
+-                            <p class="text-sm text-on-surface-variant">Accurate performance data for extreme torque and
++                            <h4 class="font-headline-lg text-xl uppercase mb-2" data-i18n="precision_load_ratings">Precision Load Ratings</h4>
++                            <p class="text-sm text-on-surface-variant" data-i18n="precision_load_desc">Accurate performance data for extreme torque and
+                                 speed requirements.</p>
+                         </div>
+                         <div class="col-span-12 md:col-span-4 bg-surface-container-lowest p-8 border border-outline-variant hover:border-primary hover:shadow-md transition-all duration-300 group"
+@@ -542,8 +540,8 @@
+                             <span
+                                 class="material-symbols-outlined text-4xl text-primary mb-4 group-hover:scale-110 transition-transform inline-block"
+                                 style="font-variation-settings: 'FILL' 1;">engineering</span>
+-                            <h4 class="font-headline-lg text-xl uppercase mb-2">Custom Fabrication</h4>
+-                            <p class="text-sm text-on-surface-variant">Bespoke belt lengths and pulley dimensions
++                            <h4 class="font-headline-lg text-xl uppercase mb-2" data-i18n="custom_fabrication">Custom Fabrication</h4>
++                            <p class="text-sm text-on-surface-variant" data-i18n="custom_fab_desc">Bespoke belt lengths and pulley dimensions
+                                 engineered to your specs.</p>
+                         </div>
+                         <div class="col-span-12 md:col-span-4 bg-surface-container-lowest p-8 border border-outline-variant hover:border-primary hover:shadow-md transition-all duration-300 group"
+@@ -551,8 +549,8 @@
+                             <span
+                                 class="material-symbols-outlined text-4xl text-primary mb-4 group-hover:scale-110 transition-transform inline-block"
+                                 style="font-variation-settings: 'FILL' 1;">support_agent</span>
+-                            <h4 class="font-headline-lg text-xl uppercase mb-2">Technical Support</h4>
+-                            <p class="text-sm text-on-surface-variant">Direct access to mechanical engineers for system
++                            <h4 class="font-headline-lg text-xl uppercase mb-2" data-i18n="technical_support">Technical Support</h4>
++                            <p class="text-sm text-on-surface-variant" data-i18n="technical_support_desc">Direct access to mechanical engineers for system
+                                 optimization.</p>
+                         </div>
+                     </div>
+@@ -562,11 +560,11 @@
+                 <section id="featured-section">
+                     <div class="flex justify-between items-end mb-8">
+                         <div>
+-                            <h2 class="font-headline-lg text-headline-lg text-primary uppercase">Featured Bearings &amp;
++                            <h2 class="font-headline-lg text-headline-lg text-primary uppercase" data-i18n="featured_bearings_sprockets">Featured Bearings &amp;
+                                 Sprockets</h2>
+-                            <p class="text-on-surface-variant">Direct stock of high-demand industrial components.</p>
++                            <p class="text-on-surface-variant" data-i18n="featured_subtitle">Direct stock of high-demand industrial components.</p>
+                         </div>
+-                        <a href="products.html" class="text-primary font-bold flex items-center gap-1 hover:underline">
++                        <a href="products.html" class="text-primary font-bold flex items-center gap-1 hover:underline" data-i18n="full_catalog_btn">
+                             FULL CATALOG <span class="material-symbols-outlined text-sm">open_in_new</span>
+                         </a>
+                     </div>
+@@ -631,10 +629,10 @@
+                 <!-- Our Products Section -->
+                 <section id="our-products" class="scroll-mt-24" data-aos="fade-up" data-aos-duration="600">
+                     <div class="flex items-center gap-4 mb-8">
+-                        <h2 class="font-headline-lg text-headline-lg text-primary uppercase">Our Products</h2>
++                        <h2 class="font-headline-lg text-headline-lg text-primary uppercase" data-i18n="our_products">Our Products</h2>
+                         <div class="flex-1 h-px bg-outline-variant"></div>
+                         <a href="products.html"
+-                            class="text-primary font-bold text-sm flex items-center gap-1 hover:underline shrink-0 font-technical-label">VIEW
++                            class="text-primary font-bold text-sm flex items-center gap-1 hover:underline shrink-0 font-technical-label" data-i18n="view_all">VIEW
+                             ALL <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                     </div>
+ 
+@@ -651,12 +649,12 @@
+                             <span
+                                 class="font-technical-label text-xs uppercase tracking-widest text-secondary block mb-1">Trusted
+                                 By Industry Leaders</span>
+-                            <h2 class="font-headline-lg text-headline-lg text-primary uppercase">Our Clients</h2>
+-                            <p class="text-on-surface-variant mt-2 text-sm">Trusted by leading industrial,
++                            <h2 class="font-headline-lg text-headline-lg text-primary uppercase" data-i18n="our_clients">Our Clients</h2>
++                            <p class="text-on-surface-variant mt-2 text-sm" data-i18n="clients_subtitle">Trusted by leading industrial,
+                                 manufacturing, and engineering enterprises in Saudi Arabia.</p>
+                         </div>
+                         <a href="clients.html"
+-                            class="text-primary font-bold text-sm flex items-center gap-1 hover:underline shrink-0 font-technical-label">VIEW
++                            class="text-primary font-bold text-sm flex items-center gap-1 hover:underline shrink-0 font-technical-label" data-i18n="view_all_clients_link">VIEW
+                             ALL CLIENTS <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                     </div>
+ 
+@@ -738,14 +736,14 @@
+                     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+                         <div>
+                             <span
+-                                class="font-technical-label text-xs uppercase tracking-widest text-secondary block mb-1">Global
++                                class="font-technical-label text-xs uppercase tracking-widest text-secondary block mb-1" data-i18n="global_partners">Global
+                                 Manufacturing Partners</span>
+-                            <h2 class="font-headline-lg text-headline-lg text-primary uppercase">Our Partners</h2>
+-                            <p class="text-on-surface-variant mt-2 text-sm">Strategic alliances with world-leading
++                            <h2 class="font-headline-lg text-headline-lg text-primary uppercase" data-i18n="our_partners">Our Partners</h2>
++                            <p class="text-on-surface-variant mt-2 text-sm" data-i18n="partners_subtitle">Strategic alliances with world-leading
+                                 manufacturers in power transmission and industrial components.</p>
+                         </div>
+                         <a href="partners.html"
+-                            class="text-primary font-bold text-sm flex items-center gap-1 hover:underline shrink-0 font-technical-label">VIEW
++                            class="text-primary font-bold text-sm flex items-center gap-1 hover:underline shrink-0 font-technical-label" data-i18n="view_all_partners_link">VIEW
+                             ALL PARTNERS <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                     </div>
+ 
+@@ -818,18 +816,18 @@
+                 class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row items-center justify-between gap-8">
+                 <div>
+                     <span
+-                        class="font-technical-label text-xs uppercase tracking-widest text-secondary-fixed-dim block mb-2">Ready
++                        class="font-technical-label text-xs uppercase tracking-widest text-secondary-fixed-dim block mb-2" data-i18n="ready_to_order">Ready
+                         to Order?</span>
+-                    <h2 class="font-headline-lg text-3xl font-bold uppercase">Need Industrial Components?</h2>
+-                    <p class="text-blue-100 mt-2 text-sm max-w-md">Our technical team is ready to help you find the
++                    <h2 class="font-headline-lg text-3xl font-bold uppercase" data-i18n="need_components">Need Industrial Components?</h2>
++                    <p class="text-blue-100 mt-2 text-sm max-w-md" data-i18n="cta_description">Our technical team is ready to help you find the
+                         right power transmission solution. Contact us today for a quote.</p>
+                 </div>
+                 <div class="flex gap-4 shrink-0">
+                     <a href="contact.html"
+-                        class="bg-on-primary text-primary font-bold px-8 py-4 uppercase text-sm hover:opacity-90 transition-opacity">CONTACT
++                        class="bg-on-primary text-primary font-bold px-8 py-4 uppercase text-sm hover:opacity-90 transition-opacity" data-i18n="contact_us_btn">CONTACT
+                         US</a>
+                     <a href="products.html"
+-                        class="border-2 border-on-primary text-on-primary font-bold px-8 py-4 uppercase text-sm hover:bg-on-primary/10 transition-colors">BROWSE
++                        class="border-2 border-on-primary text-on-primary font-bold px-8 py-4 uppercase text-sm hover:bg-on-primary/10 transition-colors" data-i18n="browse_catalog_footer_btn">BROWSE
+                         CATALOG</a>
+                 </div>
+             </div>
+@@ -839,8 +837,8 @@
+     <footer class="bg-primary dark:bg-on-primary-fixed text-on-primary mt-20">
+         <div class="w-full py-32 px-margin-desktop grid grid-cols-12 gap-gutter max-w-container-max mx-auto">
+             <div class="col-span-12 lg:col-span-4">
+-                <span class="font-headline-lg text-headline-lg font-bold text-on-primary mb-6 block">BELTS STORE</span>
+-                <p class="text-surface-variant opacity-80 text-body-md max-w-sm mb-8">
++                <span class="font-headline-lg text-headline-lg font-bold text-on-primary mb-6 block" data-i18n="brand">BELTS STORE</span>
++                <p class="text-surface-variant opacity-80 text-body-md max-w-sm mb-8" data-i18n="footer_description">
+                     Supplying global industries with premium power transmission components since 1994. Quality certified
+                     and engineering backed.
+                 </p>
+@@ -854,23 +852,23 @@
+                 </div>
+             </div>
+             <div class="col-span-6 lg:col-span-2">
+-                <h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold">
++                <h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold" data-i18n="navigation">
+                     Navigation</h4>
+                 <ul class="space-y-4 font-body-md text-sm">
+                     <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity"
+-                            href="about.html">About Us</a></li>
++                            href="about.html" data-i18n="nav_about">About Us</a></li>
+                     <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity"
+-                            href="products.html">Products</a></li>
++                            href="products.html" data-i18n="nav_products">Products</a></li>
+                     <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity"
+-                            href="clients.html">Our Clients</a></li>
++                            href="clients.html" data-i18n="nav_clients">Our Clients</a></li>
+                     <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity"
+-                            href="partners.html">Our Partners</a></li>
++                            href="partners.html" data-i18n="nav_partners">Our Partners</a></li>
+                     <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity"
+-                            href="contact.html">Contact Us</a></li>
++                            href="contact.html" data-i18n="nav_contact">Contact Us</a></li>
+                 </ul>
+             </div>
+             <div class="col-span-6 lg:col-span-2">
+-                <h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold">
++                <h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold" data-i18n="categories_footer">
+                     Categories</h4>
+                 <ul class="space-y-4 font-body-md text-sm">
+                     <li><a class="text-surface-variant opacity-80 hover:opacity-100 transition-opacity"
+@@ -884,9 +882,9 @@
+                 </ul>
+             </div>
+             <div class="col-span-12 lg:col-span-4">
+-                <h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold">
++                <h4 class="font-label-sm text-label-sm uppercase tracking-wider mb-6 text-secondary-fixed font-bold" data-i18n="newsletter">
+                     Industrial Newsletter</h4>
+-                <p class="text-xs opacity-70 mb-4">Receive technical updates and inventory arrivals.</p>
++                <p class="text-xs opacity-70 mb-4" data-i18n="newsletter_text">Receive technical updates and inventory arrivals.</p>
+                 <div class="flex">
+                     <input class="bg-on-primary-fixed border-none text-on-primary p-3 flex-1 outline-none"
+                         placeholder="Email address" type="email" />
+@@ -897,15 +895,15 @@
+         </div>
+         <div
+             class="border-t border-on-primary/10 py-8 px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+-            <p class="font-label-sm text-label-sm text-surface-variant opacity-60">┬⌐ 2024 Belts Store. All Rights
++            <p class="font-label-sm text-label-sm text-surface-variant opacity-60" data-i18n="footer_copyright">┬⌐ 2024 Belts Store. All Rights
+                 Reserved. Powering Industrial Excellence.</p>
+             <div class="flex gap-8">
+                 <a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100"
+-                    href="#">Privacy Policy</a>
+-                <a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#">Terms
++                    href="#" data-i18n="privacy_policy">Privacy Policy</a>
++                <a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100" href="#" data-i18n="terms_of_service">Terms
+                     of Service</a>
+                 <a class="font-label-sm text-label-sm text-surface-variant opacity-60 hover:opacity-100"
+-                    href="#">Shipping &amp; Returns</a>
++                    href="#" data-i18n="shipping_returns">Shipping &amp; Returns</a>
+             </div>
+         </div>
+     </footer>
+@@ -1133,7 +1131,9 @@
+     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+     <script>AOS.init({ once: true, offset: 60, duration: 650, easing: 'ease-out-cubic' });</script>
+     <script src="products-data.js"></script>
+-    <script src="nav-component.js?v=2"></script>
++    <!-- i18n engine must load BEFORE nav-component so the language switcher can call window.i18n -->
++    <script src="/i18n.js"></script>
++    <script src="nav-component.js?v=3"></script>
+     <script src="cart.js"></script>
+ </body>
+ 

@@ -2117,7 +2117,7 @@
   {
     "_id": "e9rgox3puil29y91n677",
     "createdAt": "2026-06-21T19:25:46.162Z",
-    "updatedAt": "2026-06-21T19:25:46.162Z",
+    "updatedAt": "2026-06-23T17:16:28.865Z",
     "name": "Ribbed Belt Pullets",
     "description": "",
     "shortDescription": "",
@@ -2126,7 +2126,7 @@
     "sku": "SKU-1782069701208-6-3rll",
     "price": 0,
     "discountPrice": 0,
-    "stock": 10,
+    "stock": 9,
     "status": "Active",
     "images": [],
     "specifications": {},
