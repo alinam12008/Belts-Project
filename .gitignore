@@ -1,1 +1,13 @@
-
+.env
+/scratch
+/data
+/node_modules
+/logs
+/temp-products.json
+/products-scraped.json
+/products-translations-en.json
+/products-translations-ar.json
+/products-translations-es.json
+/products-translations-fr.json
+/products-translations-de.json
+/products-translations-it.json

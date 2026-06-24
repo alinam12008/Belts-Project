@@ -51,13 +51,17 @@ if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
 // ============================================================
 // 2. Email Sending Function
 // ============================================================
+const SUPPORT_EMAIL = process.env.SUPPORT_EMAIL || process.env.SMTP_FROM || 'info@belts-store.com';
+const SITE_URL = process.env.SITE_URL || 'https://belts-store.com';
+
 async function sendSupportEmail({ to, subject, html, text }) {
   if (!smtpTransporter) {
     return { success: false, error: 'SMTP configuration is missing. Check .env file.' };
   }
   try {
     const info = await smtpTransporter.sendMail({
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      from: `"BELTS STORE Support" <${SUPPORT_EMAIL}>`,
+      replyTo: SUPPORT_EMAIL,
       to,
       subject,
       text,
@@ -712,7 +716,7 @@ app.put('/api/tickets/:id', requireAdmin, async (req, res) => {
       console.log("CUSTOMER EMAIL:", ticket.email);
 
       const subject = `Support Response - Ticket #${ticket._id}`;
-      const websiteUrl = 'http://localhost:3000';
+      const websiteUrl = SITE_URL;
 
       const whatsappNumbers = [
         { number: '+966 13 832 2867', clean: '966138322867' },
@@ -737,8 +741,8 @@ app.put('/api/tickets/:id', requireAdmin, async (req, res) => {
       const emailHtml = `
       <div style="font-family:Arial,sans-serif;max-width:700px;margin:auto;padding:20px">
 
-      <h2 style="color:#0b3b82;">
-        Stitch Modern Belt Store
+      <h2 style="color:#003178;">
+        BELTS STORE
       </h2>
 
       <p>Hello ${ticket.name},</p>
@@ -765,7 +769,7 @@ app.put('/api/tickets/:id', requireAdmin, async (req, res) => {
 
       <a href="${websiteUrl}"
         style="
-          background:#0b3b82;
+          background:#003178;
           color:white;
           padding:12px 24px;
           text-decoration:none;
@@ -782,7 +786,8 @@ app.put('/api/tickets/:id', requireAdmin, async (req, res) => {
 
       <p>
         Regards,<br>
-        Stitch Modern Belt Store Support Team
+        BELTS STORE Support Team<br>
+        <a href="mailto:${SUPPORT_EMAIL}" style="color:#003178;">${SUPPORT_EMAIL}</a>
       </p>
 
       </div>
@@ -792,8 +797,10 @@ app.put('/api/tickets/:id', requireAdmin, async (req, res) => {
       Customer Query:${ticket.message}
       Admin Response:${reply}
       Website:${websiteUrl}
-      
-      Regards,Stitch Modern Belt Store Support Team
+
+      Regards,
+      BELTS STORE Support Team
+      ${SUPPORT_EMAIL}
       `;
 
       const emailResult = await sendSupportEmail({

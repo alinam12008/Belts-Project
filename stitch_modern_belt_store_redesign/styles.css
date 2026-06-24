@@ -1,0 +1,16 @@
+/* Global stylesheet for responsive design */
+body { overflow-x: hidden; }
+
+/* Ensure media fits container */
+img, video { max-width: 100%; height: auto; }
+
+/* Responsive container: replace max-w-container-max */
+.max-w-container-max {
+  max-width: 100%;
+}
+@media (min-width: 768px) {
+  .max-w-container-max { max-width: 1280px; }
+}
+
+/* Adjust hero slide to full width */
+.hero-slide, .hero-slide img, .hero-slide video { width: 100%; height: auto; }

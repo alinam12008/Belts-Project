@@ -190,9 +190,27 @@
         .logo-card:hover {
             box-shadow: 0 0 0 2px #003178, 0 8px 24px rgba(0, 49, 120, 0.12);
         }
+
+        /* Admin sidebar & top bar */
+        #admin-sidebar-overlay {
+            transition: opacity 0.3s ease;
+        }
+
+        #admin-sidebar-overlay.is-open {
+            display: block;
+            opacity: 1;
+        }
+
+        .nav-item.active {
+            background-color: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
     </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="custom-cursor.css">
 </head>
-<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<body class="admin-page bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
 
     <!-- Toast Container -->
     <div id="toast-container" class="fixed bottom-6 right-6 z-[11000] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
@@ -274,26 +292,20 @@
     </div>
 
     <!-- ================= MAIN LAYOUT ================= -->
-    <div id="admin-layout" class="flex-1 flex overflow-hidden hidden">
-        <!-- Sidebar -->
-        <aside id="admin-sidebar" class="w-64 bg-primary text-on-primary flex flex-col justify-between shrink-0 border-r border-outline-variant/20 shadow-xl z-30 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300">
-            <div>
-                <!-- <div class="h-20 flex items-center justify-between px-6 border-b border-outline-variant/20 bg-primary/20">
-                    <a href="index.html" class="font-headline-lg text-lg font-bold tracking-wider text-white">BELTS ADMIN</a>
-                    <a href="index.html" class="text-white/60 hover:text-white" title="Go to Website"><span class="material-symbols-outlined text-base">open_in_new</span></a>
-                </div> -->
+    <div id="admin-layout" class="flex-1 flex overflow-hidden hidden relative">
+        <div id="admin-sidebar-overlay" class="fixed inset-0 bg-black/50 z-20 hidden md:hidden" onclick="closeAdminSidebar()" aria-hidden="true"></div>
 
-                <div class="h-20 flex items-center justify-between px-6 border-b border-outline-variant/20 bg-primary/20">
-                <!-- Clickable Logo linking to main website -->
-                <a href="index.html" target="_blank" class="flex items-center gap-3 hover:opacity-80 transition-opacity" title="Go to BELTS STORE">
-                    <img src="https://belts-store.com/wp-content/uploads/2025/09/BELTS-STORE_en-1.svg" 
-                    alt="BELTS STORE Logo" 
-                    class="h-10 w-auto brightness-0 invert object-contain" />
-                </a>
-                <!-- External link icon (optional, kept for extra visibility) -->
-                <a href="index.html" target="_blank" class="text-white/60 hover:text-white" title="Go to Website">
-                <span class="material-symbols-outlined text-base">open_in_new</span>
-                </a>
+        <!-- Sidebar -->
+        <aside id="admin-sidebar" class="w-64 bg-primary text-on-primary flex flex-col justify-between shrink-0 border-r border-outline-variant/20 shadow-xl z-40 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300">
+            <div>
+                <div class="h-20 flex items-center justify-between px-5 border-b border-outline-variant/20 bg-primary/20 gap-3">
+                    <a href="index.html" target="_blank" rel="noopener" class="flex items-center gap-2 min-w-0 hover:opacity-90 transition-opacity" title="Go to BELTS STORE">
+                        <span class="material-symbols-outlined text-white text-2xl shrink-0">settings</span>
+                        <span class="font-headline-lg text-sm font-bold tracking-wider text-white truncate">BELTS ADMIN</span>
+                    </a>
+                    <a href="index.html" target="_blank" rel="noopener" class="text-white/70 hover:text-white shrink-0" title="Go to Website">
+                        <span class="material-symbols-outlined text-base">open_in_new</span>
+                    </a>
                 </div>
                 
                 <nav class="p-4 space-y-1">
@@ -336,7 +348,7 @@
         <div class="flex-1 flex flex-col overflow-hidden bg-surface">
             <header class="h-20 bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-4 md:px-8 shadow-sm z-10 relative">
                 <div class="flex items-center gap-2 md:gap-4">
-                    <button id="admin-sidebar-toggle" class="md:hidden flex items-center justify-center p-2 rounded hover:bg-surface-container text-on-surface-variant transition-colors" onclick="document.getElementById('admin-sidebar').classList.toggle('-translate-x-full')">
+                    <button id="admin-sidebar-toggle" type="button" class="md:hidden flex items-center justify-center p-2 rounded hover:bg-surface-container text-on-surface-variant transition-colors" onclick="toggleAdminSidebar()" aria-label="Toggle navigation menu">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                     <h2 class="font-headline-lg text-xl font-bold text-primary uppercase" id="section-title">Dashboard</h2>
@@ -929,8 +941,45 @@
                 .replace(/-+$/, '');
         }
 
+        function toggleAdminSidebar() {
+            const sidebar = document.getElementById('admin-sidebar');
+            const overlay = document.getElementById('admin-sidebar-overlay');
+            if (!sidebar) return;
+            const isClosed = sidebar.classList.contains('-translate-x-full');
+            if (isClosed) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay?.classList.remove('hidden');
+                overlay?.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            } else {
+                closeAdminSidebar();
+            }
+        }
+
+        function closeAdminSidebar() {
+            const sidebar = document.getElementById('admin-sidebar');
+            const overlay = document.getElementById('admin-sidebar-overlay');
+            sidebar?.classList.add('-translate-x-full');
+            overlay?.classList.add('hidden');
+            overlay?.classList.remove('is-open');
+            document.body.style.overflow = '';
+        }
+
         // ---- DOM ready ----
         document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = item.getAttribute('href');
+                    if (!target || !target.startsWith('#')) return;
+                    if (window.location.hash !== target) {
+                        window.location.hash = target;
+                    } else {
+                        handleRoute();
+                    }
+                });
+            });
+
             if (token) {
                 showAdminPanel();
             } else {
@@ -947,17 +996,15 @@
             document.querySelectorAll('.nav-item').forEach(item => {
                 const href = item.getAttribute('href');
                 if (href === `#${hash}`) {
-                    item.classList.add('bg-white/10', 'text-white');
+                    item.classList.add('active', 'bg-white/10', 'text-white');
                     item.classList.remove('text-white/80');
                 } else {
-                    item.classList.remove('bg-white/10', 'text-white');
+                    item.classList.remove('active', 'bg-white/10', 'text-white');
                     item.classList.add('text-white/80');
                 }
             });
-            // Close sidebar on mobile
-            const sidebar = document.getElementById('admin-sidebar');
-            if (sidebar && !sidebar.classList.contains('-translate-x-full')) {
-                sidebar.classList.add('-translate-x-full');
+            if (window.matchMedia('(max-width: 767px)').matches) {
+                closeAdminSidebar();
             }
             const titles = {
                 dashboard: "Terminal Dashboard",
@@ -1786,7 +1833,9 @@
             if (!products.length) loadProductsData();
             ticketReplyAttachments = [];
             const date = new Date(ticket.createdAt || ticket.updatedAt).toLocaleString();
-            const emailStatus = ticket.emailSentAt ? `Email sent ${new Date(ticket.emailSentAt).toLocaleString()}` : 'Email not sent yet';
+            const emailStatus = ticket.emailSentAt
+                ? `Email sent ${new Date(ticket.emailSentAt).toLocaleString()} from info@belts-store.com`
+                : 'Email not sent yet';
             const whatsappStatus = ticket.whatsappSentAt ? `WhatsApp sent ${new Date(ticket.whatsappSentAt).toLocaleString()}` : 'WhatsApp not sent yet';
             const repliesHtml = ticket.replies.map(r => {
                 const attachmentsHtml = r.products && r.products.length ? `
@@ -2344,6 +2393,7 @@
 
         console.log('Admin panel loaded (full functions, no i18n).');
     </script>
+    <script src="custom-cursor.js"></script>
     <script src="i18n.js"></script>
     <script src="language-switcher.js"></script>
 </body>

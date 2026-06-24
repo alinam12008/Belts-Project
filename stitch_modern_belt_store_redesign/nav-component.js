@@ -255,6 +255,9 @@ console.log('✅ nav-component.js v6.0 loaded');
             var phVal = window.i18n.t('search_placeholder');
             if (phVal) searchInput.setAttribute('placeholder', phVal);
         }
+        if (window.CustomCursor && typeof window.CustomCursor.updateToggleUI === 'function') {
+            window.CustomCursor.updateToggleUI();
+        }
     }
 
     // ── Listen for language changes ───────────────────────────────────────────
@@ -370,6 +373,21 @@ console.log('✅ nav-component.js v6.0 loaded');
                 viewCartBtn.setAttribute('data-i18n', 'view_cart');
                 toolsGroup.appendChild(viewCartBtn);
             }
+
+            // Custom cursor toggle (desktop navbar)
+            if (!document.getElementById('cursor-toggle-btn')) {
+                var cursorToggleBtn = document.createElement('button');
+                cursorToggleBtn.id = 'cursor-toggle-btn';
+                cursorToggleBtn.type = 'button';
+                cursorToggleBtn.className = 'hidden md:flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-colors shrink-0';
+                cursorToggleBtn.setAttribute('aria-pressed', 'true');
+                cursorToggleBtn.innerHTML = '<span class="material-symbols-outlined text-2xl">precision_manufacturing</span>';
+                toolsGroup.appendChild(cursorToggleBtn);
+                if (window.CustomCursor && typeof window.CustomCursor.registerToggleButton === 'function') {
+                    window.CustomCursor.registerToggleButton(cursorToggleBtn);
+                }
+            }
+
             toolsGroup.appendChild(adminBtn);
             toolsGroup.appendChild(langWrapper);
             rightSection.appendChild(toolsGroup);
@@ -408,6 +426,15 @@ console.log('✅ nav-component.js v6.0 loaded');
                         '<select id="mobile-site-lang-select" class="p-1 border border-outline-variant bg-surface-container-low text-xs rounded w-[90px] shrink-0 font-body-md font-bold">' +
                             '<option value="en">English</option><option value="ar">العربية</option>' +
                         '</select>' +
+                    '</div>' +
+                    '<div class="px-4 py-3 border-t border-outline-variant md:hidden">' +
+                        '<button id="cursor-toggle-mobile" type="button" class="w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded border border-outline-variant bg-surface-container-low hover:border-primary hover:text-primary transition-colors text-on-surface-variant" aria-pressed="true">' +
+                            '<span class="flex items-center gap-2 font-bold text-xs uppercase tracking-wide">' +
+                                '<span class="material-symbols-outlined text-xl">precision_manufacturing</span>' +
+                                '<span id="cursor-toggle-mobile-label">Gear Cursor</span>' +
+                            '</span>' +
+                            '<span class="material-symbols-outlined text-base opacity-60">swap_horiz</span>' +
+                        '</button>' +
                     '</div>' +
                     '<div class="p-4 border-t border-outline-variant">' +
                         '<a href="contact.html" class="block bg-primary text-on-primary font-bold text-center py-3 uppercase text-sm hover:bg-primary-container transition-all">' + contactUsLabel + '</a>' +
@@ -456,6 +483,17 @@ console.log('✅ nav-component.js v6.0 loaded');
             if (btn)      btn.addEventListener('click', openDrawer);
             if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
             if (overlay)  overlay.addEventListener('click', closeDrawer);
+
+            var mobileCursorToggle = document.getElementById('cursor-toggle-mobile');
+            if (mobileCursorToggle && window.CustomCursor && typeof window.CustomCursor.registerToggleButton === 'function') {
+                window.CustomCursor.registerToggleButton(mobileCursorToggle);
+            }
+        }
+
+        // Wire desktop toggle if navbar was already built on a prior visit
+        var desktopCursorToggle = document.getElementById('cursor-toggle-btn');
+        if (desktopCursorToggle && window.CustomCursor && typeof window.CustomCursor.registerToggleButton === 'function') {
+            window.CustomCursor.registerToggleButton(desktopCursorToggle);
         }
     }
 

@@ -1,0 +1,125 @@
+/* ── BELTS STORE Premium Gear Cursor ── */
+
+body.custom-cursor-active,
+body.custom-cursor-active * {
+    cursor: none !important;
+}
+
+#custom-cursor {
+    position: fixed;
+    pointer-events: none;
+    width: 38px;
+    height: 38px;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+    will-change: left, top, transform;
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.custom-cursor-active #custom-cursor.cursor-ready {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Ambient blue aura */
+#custom-cursor::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 49, 120, 0.22) 0%, rgba(0, 49, 120, 0.06) 45%, transparent 72%);
+    animation: cursorAura 2.6s ease-in-out infinite;
+    z-index: -1;
+}
+
+/* Precision ring */
+#custom-cursor::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 49, 120, 0.14);
+    box-shadow: 0 0 0 0 rgba(0, 49, 120, 0.06);
+    transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+#custom-cursor.hover::after {
+    border-color: rgba(0, 49, 120, 0.35);
+    box-shadow: 0 0 14px 3px rgba(0, 49, 120, 0.2);
+}
+
+.cursor-gear-wrap {
+    width: 100%;
+    height: 100%;
+    animation: gearSpin 14s linear infinite;
+    transform-origin: center center;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3))
+            drop-shadow(0 0 7px rgba(0, 49, 120, 0.28));
+    transition: filter 0.22s ease;
+}
+
+#custom-cursor svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#custom-cursor.hover {
+    transform: translate(-50%, -50%) scale(1.14);
+}
+
+#custom-cursor.hover .cursor-gear-wrap {
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.35))
+            drop-shadow(0 0 12px rgba(0, 49, 120, 0.45));
+}
+
+#custom-cursor.is-moving .cursor-gear-wrap {
+    animation-timing-function: linear;
+}
+
+@keyframes gearSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes cursorAura {
+    0%, 100% { opacity: 0.55; transform: scale(0.94); }
+    50% { opacity: 1; transform: scale(1.06); }
+}
+
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease;
+}
+
+body.custom-cursor-active #particle-canvas.cursor-ready {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Navbar toggle */
+#cursor-toggle-btn,
+#cursor-toggle-mobile {
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#cursor-toggle-btn.is-active,
+#cursor-toggle-mobile.is-active {
+    color: #003178 !important;
+    background-color: rgba(0, 49, 120, 0.08);
+}
+
+#cursor-toggle-btn.is-active .material-symbols-outlined,
+#cursor-toggle-mobile.is-active .material-symbols-outlined {
+    font-variation-settings: 'FILL' 1;
+}

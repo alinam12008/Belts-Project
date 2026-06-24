@@ -8,6 +8,9 @@
     <title>BELTS STORE | Industrial Power Transmission</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="custom-cursor.css">
     <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap"
@@ -138,6 +141,25 @@
 
         .image-overlay-gradient {
             background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 30%, rgba(255, 255, 255, 0) 100%);
+        }
+        /* Prevent horizontal overflow on mobile devices */
+        body {
+          overflow-x: hidden;
+        }
+
+        /* Ensure images and videos never exceed the viewport width */
+        img,
+        video {
+          max-width: 100%;
+          height: auto;
+        }
+
+        /* Adjust hero slide to respect container width */
+        .hero-slide,
+        .hero-slide video,
+        .hero-slide img {
+          width: 100%;
+          height: auto;
         }
 
         /* ── Hero Slider ── */
@@ -1151,6 +1173,7 @@
     <!-- i18n engine must load BEFORE nav-component so the language switcher can call window.i18n -->
     <script src="/i18n.js"></script>
     <script src="language-switcher.js"></script>
+    <script src="custom-cursor.js"></script>
     <script src="nav-component.js?v=3"></script>
     <script src="cart.js"></script>
 </body>
