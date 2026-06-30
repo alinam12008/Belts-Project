@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const db = require('./db');
+const isVercel = process.env.VERCEL === '1';
 
 // ============================================================
 // 1. SMTP Transporter – with fallback and logging
@@ -98,8 +99,8 @@ app.get('/partners.html', (req, res) => {
 // Then serve the redesign folder (if it exists)
 app.use(express.static(path.join(__dirname, 'stitch_modern_belt_store_redesign')));
 
-// Then serve uploads folder
-app.use('/mmmm', express.static(path.join(__dirname, 'mmmm')));
+// Then serve uploads folder (serve from /tmp on Vercel for write support)
+app.use('/mmmm', express.static(isVercel ? '/tmp/mmmm' : path.join(__dirname, 'mmmm')));
 
 // Init database
 db.init(
@@ -295,13 +296,40 @@ app.put('/api/admin/settings', requireAdmin, async (req, res) => {
 // ============================================================
 // Products – Direct JSON file operations (MongoDB fallback)
 // ============================================================
-const PRODUCTS_FILE = path.join(__dirname, 'data', 'products.json');
+const PRODUCTS_FILE = isVercel ? path.join('/tmp', 'products.json') : path.join(__dirname, 'data', 'products.json');
+const LOGS_FILE = isVercel ? path.join('/tmp', 'logs.json') : path.join(__dirname, 'data', 'logs.json');
+
+// Copy seed files to /tmp on Vercel if they do not exist
+if (isVercel) {
+  const originalProducts = path.join(__dirname, 'data', 'products.json');
+  if (!fs.existsSync(PRODUCTS_FILE) && fs.existsSync(originalProducts)) {
+    try {
+      fs.copyFileSync(originalProducts, PRODUCTS_FILE);
+      console.log('Copied products.json seed to /tmp');
+    } catch (err) {
+      console.error('Failed to copy products.json to /tmp:', err.message);
+    }
+  }
+  const originalLogs = path.join(__dirname, 'data', 'logs.json');
+  if (!fs.existsSync(LOGS_FILE) && fs.existsSync(originalLogs)) {
+    try {
+      fs.copyFileSync(originalLogs, LOGS_FILE);
+      console.log('Copied logs.json seed to /tmp');
+    } catch (err) {
+      console.error('Failed to copy logs.json to /tmp:', err.message);
+    }
+  }
+}
 
 // Helper: read products from JSON file
 function readProductsFile() {
   try {
     if (!fs.existsSync(PRODUCTS_FILE)) {
-      fs.writeFileSync(PRODUCTS_FILE, JSON.stringify([], null, 2));
+      try {
+        fs.writeFileSync(PRODUCTS_FILE, JSON.stringify([], null, 2));
+      } catch (writeErr) {
+        console.error('Error writing default products file:', writeErr.message);
+      }
     }
     const data = fs.readFileSync(PRODUCTS_FILE, 'utf8');
     return JSON.parse(data);
@@ -313,7 +341,11 @@ function readProductsFile() {
 
 // Helper: write products to JSON file
 function writeProductsFile(products) {
-  fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(products, null, 2));
+  try {
+    fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(products, null, 2));
+  } catch (writeErr) {
+    console.error('Error writing products file:', writeErr.message);
+  }
 }
 
 // GET /api/products
@@ -368,13 +400,13 @@ app.post('/api/products', requireAdmin, async (req, res) => {
     writeProductsFile(products);
 
     // Log activity
-    const logs = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'logs.json'), 'utf8') || '[]');
+    const logs = JSON.parse(fs.readFileSync(LOGS_FILE, 'utf8') || '[]');
     logs.push({
       action: `Added product: ${name} (SKU: ${finalSku})`,
       adminName: req.admin.name,
       timestamp: new Date().toISOString()
     });
-    fs.writeFileSync(path.join(__dirname, 'data', 'logs.json'), JSON.stringify(logs, null, 2));
+    fs.writeFileSync(LOGS_FILE, JSON.stringify(logs, null, 2));
 
     console.log(`✅ Product created: ${name} (${finalSku})`);
     res.json(newProduct);
@@ -429,13 +461,13 @@ app.put('/api/products/:id', requireAdmin, async (req, res) => {
     writeProductsFile(products);
 
     // Log activity
-    const logs = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'logs.json'), 'utf8') || '[]');
+    const logs = JSON.parse(fs.readFileSync(LOGS_FILE, 'utf8') || '[]');
     logs.push({
       action: `Modified product: ${updatedProduct.name} (SKU: ${updatedProduct.sku})`,
       adminName: req.admin.name,
       timestamp: new Date().toISOString()
     });
-    fs.writeFileSync(path.join(__dirname, 'data', 'logs.json'), JSON.stringify(logs, null, 2));
+    fs.writeFileSync(LOGS_FILE, JSON.stringify(logs, null, 2));
 
     res.json(updatedProduct);
   } catch (err) {
@@ -456,13 +488,13 @@ app.delete('/api/products/:id', requireAdmin, async (req, res) => {
     writeProductsFile(products);
 
     // Log activity
-    const logs = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'logs.json'), 'utf8') || '[]');
+    const logs = JSON.parse(fs.readFileSync(LOGS_FILE, 'utf8') || '[]');
     logs.push({
       action: `Deleted product: ${deleted.name} (SKU: ${deleted.sku})`,
       adminName: req.admin.name,
       timestamp: new Date().toISOString()
     });
-    fs.writeFileSync(path.join(__dirname, 'data', 'logs.json'), JSON.stringify(logs, null, 2));
+    fs.writeFileSync(LOGS_FILE, JSON.stringify(logs, null, 2));
 
     res.json({ success: true });
   } catch (err) {
@@ -473,9 +505,13 @@ app.delete('/api/products/:id', requireAdmin, async (req, res) => {
 
 
 // Image Base64 Upload
-const UPLOADS_DIR = path.join(__dirname, 'mmmm', 'uploads');
+const UPLOADS_DIR = isVercel ? path.join('/tmp', 'mmmm', 'uploads') : path.join(__dirname, 'mmmm', 'uploads');
 if (!fs.existsSync(UPLOADS_DIR)) {
-  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  try {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  } catch (err) {
+    console.error('Failed to create UPLOADS_DIR:', err.message);
+  }
 }
 
 app.post('/api/products/upload', requireAdmin, async (req, res) => {
@@ -973,6 +1009,10 @@ app.get('/api/language/:lang', (req, res) => {
 // 6. Static Files & Server Start
 // ============================================================
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
+if (!isVercel) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

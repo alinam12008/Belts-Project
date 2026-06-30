@@ -3,9 +3,14 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const DATA_DIR = path.join(__dirname, 'scratch', 'data');
+const isVercel = process.env.VERCEL === '1';
+const DATA_DIR = isVercel ? path.join('/tmp', 'scratch', 'data') : path.join(__dirname, 'scratch', 'data');
 if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
+  try {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  } catch (err) {
+    console.error('Failed to create DATA_DIR:', err.message);
+  }
 }
 
 let isMongo = false;
@@ -27,7 +32,26 @@ class JSONModel {
   constructor(filename, defaultData = []) {
     this.filePath = path.join(DATA_DIR, filename);
     if (!fs.existsSync(this.filePath)) {
-      fs.writeFileSync(this.filePath, JSON.stringify(defaultData, null, 2));
+      const originalPath = path.join(__dirname, 'scratch', 'data', filename);
+      if (isVercel && fs.existsSync(originalPath)) {
+        try {
+          fs.copyFileSync(originalPath, this.filePath);
+          console.log(`Copied seed file ${filename} to /tmp`);
+        } catch (copyErr) {
+          console.error(`Failed to copy seed file ${filename} to /tmp:`, copyErr.message);
+          try {
+            fs.writeFileSync(this.filePath, JSON.stringify(defaultData, null, 2));
+          } catch (writeErr) {
+            console.error(`Failed to write default data for ${filename}:`, writeErr.message);
+          }
+        }
+      } else {
+        try {
+          fs.writeFileSync(this.filePath, JSON.stringify(defaultData, null, 2));
+        } catch (writeErr) {
+          console.error(`Failed to write default data for ${filename}:`, writeErr.message);
+        }
+      }
     }
   }
 
