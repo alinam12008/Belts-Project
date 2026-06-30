@@ -220,23 +220,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Toggle drawer alignment
+            // Toggle drawer alignment without showing a sliding transition
             if (drawer) {
+                // Disable transitions during layout flip
+                drawer.style.transition = 'none';
+
+                const isClosed = drawer.classList.contains('translate-x-full') || drawer.classList.contains('-translate-x-full');
+
                 if (activeRTL) {
                     drawer.classList.remove('right-0', 'border-l');
                     drawer.classList.add('left-0', 'border-r');
-                    if (drawer.classList.contains('translate-x-full')) {
+                    if (isClosed) {
                         drawer.classList.remove('translate-x-full');
                         drawer.classList.add('-translate-x-full');
+                    } else {
+                        drawer.classList.remove('translate-x-full', '-translate-x-full');
                     }
                 } else {
                     drawer.classList.remove('left-0', 'border-r');
                     drawer.classList.add('right-0', 'border-l');
-                    if (drawer.classList.contains('-translate-x-full')) {
+                    if (isClosed) {
                         drawer.classList.remove('-translate-x-full');
                         drawer.classList.add('translate-x-full');
+                    } else {
+                        drawer.classList.remove('translate-x-full', '-translate-x-full');
                     }
                 }
+
+                // Force layout reflow
+                drawer.offsetHeight;
+
+                // Re-enable transitions for subsequent normal clicks
+                drawer.style.transition = '';
             }
         });
 
