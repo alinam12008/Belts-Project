@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function createCartElements() {
         const rtl = isRTL();
         
-        // Create Floating Cart Badge Button
+        // Create Floating Cart Badge Button (English: left, Arabic: right)
         if (!document.getElementById('floating-cart-btn')) {
             const btn = document.createElement('button');
             btn.id = 'floating-cart-btn';
-            const positionClass = rtl ? 'left-6' : 'right-6';
+            const positionClass = rtl ? 'right-6' : 'left-6';
             btn.className = `fixed bottom-6 ${positionClass} z-[9998] bg-primary text-on-primary border-2 border-secondary-container shadow-2xl w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 group`;
             btn.setAttribute('aria-label', 'Shopping Cart');
             btn.innerHTML = `
@@ -41,13 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.appendChild(btn);
         }
 
-        // Create Side Cart Drawer
+        // Create Side Cart Drawer (English: slides from left, Arabic: slides from right)
         if (!document.getElementById('cart-drawer')) {
             const drawer = document.createElement('div');
             drawer.id = 'cart-drawer';
-            const drawerSide = rtl ? 'left-0' : 'right-0';
-            const borderClass = rtl ? 'border-r' : 'border-l';
-            const translateClass = rtl ? '-translate-x-full' : 'translate-x-full';
+            const drawerSide = rtl ? 'right-0' : 'left-0';
+            const borderClass = rtl ? 'border-l' : 'border-r';
+            const translateClass = rtl ? 'translate-x-full' : '-translate-x-full';
             drawer.className = `fixed top-0 ${drawerSide} h-full w-full sm:w-[450px] bg-surface-container-lowest dark:bg-surface-container ${borderClass} border-outline-variant shadow-2xl z-[9999] transform ${translateClass} transition-transform duration-300 flex flex-col`;
             
             const cartTitle = t('cart_title', 'Your Inquiry Cart');
@@ -176,22 +176,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const quoteForm = document.getElementById('quote-request-form');
         const rtl = isRTL();
         const translateClass = rtl ? '-translate-x-full' : 'translate-x-full';
-        const translateRemoveClass = rtl ? '-translate-x-full' : 'translate-x-full';
-
         // Toggle Cart Drawer
         cartBtn.addEventListener('click', () => {
-            drawer.classList.remove(translateRemoveClass);
+            const currentRtl = isRTL();
+            const currentTranslateClass = currentRtl ? 'translate-x-full' : '-translate-x-full';
+            drawer.classList.remove(currentTranslateClass);
         });
 
         closeBtn.addEventListener('click', () => {
-            drawer.classList.add(translateRemoveClass);
+            const currentRtl = isRTL();
+            const currentTranslateClass = currentRtl ? 'translate-x-full' : '-translate-x-full';
+            drawer.classList.add(currentTranslateClass);
         });
 
         // Close drawer clicking outside (semi-overlay)
         document.addEventListener('click', (e) => {
+            const currentRtl = isRTL();
+            const currentTranslateClass = currentRtl ? 'translate-x-full' : '-translate-x-full';
             const isCartTrigger = cartBtn.contains(e.target) || e.target.closest('button[onclick*="floating-cart-btn"]');
-            if (!drawer.contains(e.target) && !isCartTrigger && !drawer.classList.contains(translateRemoveClass) && !quoteModal.contains(e.target)) {
-                drawer.classList.add(translateRemoveClass);
+            if (!drawer.contains(e.target) && !isCartTrigger && !drawer.classList.contains(currentTranslateClass) && !quoteModal.contains(e.target)) {
+                drawer.classList.add(currentTranslateClass);
             }
         });
 
@@ -525,9 +529,9 @@ document.addEventListener('DOMContentLoaded', () => {
             updateCartUI();
             // Close drawer
             const drawer = document.getElementById('cart-drawer');
-            const rtl = isRTL();
-            const translateRemoveClass = rtl ? '-translate-x-full' : 'translate-x-full';
-            drawer.classList.add(translateRemoveClass);
+            const currentRtl = isRTL();
+            const currentTranslateClass = currentRtl ? 'translate-x-full' : '-translate-x-full';
+            drawer.classList.add(currentTranslateClass);
             // Reset form
             document.getElementById('quote-request-form').reset();
         })
@@ -537,4 +541,41 @@ document.addEventListener('DOMContentLoaded', () => {
             showToast(errorMsg, "error");
         });
     }
+
+    // Listen for language change to update cart button and drawer positions dynamically
+    document.addEventListener('languageChanged', () => {
+        const rtl = isRTL();
+        const btn = document.getElementById('floating-cart-btn');
+        const drawer = document.getElementById('cart-drawer');
+        
+        if (btn) {
+            if (rtl) {
+                btn.classList.remove('left-6');
+                btn.classList.add('right-6');
+                const badge = document.getElementById('cart-badge-count');
+                if (badge) {
+                    badge.classList.remove('-right-1');
+                    badge.classList.add('-left-1');
+                }
+            } else {
+                btn.classList.remove('right-6');
+                btn.classList.add('left-6');
+                const badge = document.getElementById('cart-badge-count');
+                if (badge) {
+                    badge.classList.remove('-left-1');
+                    badge.classList.add('-right-1');
+                }
+            }
+        }
+        
+        if (drawer) {
+            if (rtl) {
+                drawer.classList.remove('left-0', 'border-r', '-translate-x-full', 'translate-x-full');
+                drawer.classList.add('right-0', 'border-l', 'translate-x-full');
+            } else {
+                drawer.classList.remove('right-0', 'border-l', 'translate-x-full', '-translate-x-full');
+                drawer.classList.add('left-0', 'border-r', '-translate-x-full');
+            }
+        }
+    });
 });
