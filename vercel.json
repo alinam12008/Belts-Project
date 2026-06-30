@@ -3,7 +3,17 @@
   "builds": [
     {
       "src": "index.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "locales/**",
+          "stitch_modern_belt_store_redesign/**",
+          "data/**",
+          "scratch/data/**",
+          "mmmm/**",
+          "i18n.js"
+        ]
+      }
     }
   ],
   "routes": [
