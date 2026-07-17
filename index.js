@@ -107,10 +107,79 @@ db.init(
   process.env.MONGODB_URI,
   process.env.ADMIN_EMAIL || 'admin@belts.com',
   process.env.ADMIN_PASSWORD || 'admin123'
-);
+).then(() => {
+  seedProductsFromCatalog();
+}).catch((err) => {
+  console.error('Database initialization failed:', err.message);
+});
 
 const JWT_SECRET = process.env.JWT_SECRET || 'belts_secret_session_key';
 const pending2fa = new Map();
+const CATALOG_PRODUCTS_PATH = path.join(__dirname, 'stitch_modern_belt_store_redesign', 'products_data.json');
+const BACKUP_PRODUCTS_PATH = path.join(__dirname, 'data', 'products-backup.json');
+
+async function seedProductsFromCatalog() {
+  try {
+    let catalogPath = CATALOG_PRODUCTS_PATH;
+    if (!fs.existsSync(catalogPath)) {
+      catalogPath = BACKUP_PRODUCTS_PATH;
+    }
+    if (!fs.existsSync(catalogPath)) {
+      console.log('No product catalog file found for seeding.');
+      return;
+    }
+
+    const rawProducts = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+    if (!Array.isArray(rawProducts)) {
+      console.warn('Product catalog seed file is not an array.');
+      return;
+    }
+
+    let createdCount = 0;
+    let updatedCount = 0;
+
+    for (const [index, item] of rawProducts.entries()) {
+      const title = item.title || item.productName || item.name || `Product ${index + 1}`;
+      const breadcrumbs = Array.isArray(item.breadcrumbs) ? item.breadcrumbs : [];
+      const category = breadcrumbs[0] || item.category || 'General';
+      const subcategory = breadcrumbs[1] || item.subcategory || '';
+      const cleanName = String(title).replace(/<[^>]+>/g, ' ').trim();
+      const slugBase = cleanName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || `product-${index + 1}`;
+      const sku = item.sku || `SKU-${Date.now()}-${index + 1}`;
+
+      const normalizedProduct = {
+        name: cleanName,
+        description: item.full_description || item.description || item.short_description || '',
+        shortDescription: item.short_description || item.description || '',
+        category,
+        subcategory,
+        brand: item.brand || '',
+        sku,
+        price: Number(item.price) || 0,
+        discountPrice: Number(item.discountPrice) || 0,
+        stock: Number(item.stock) || 10,
+        status: 'Active',
+        images: item.image ? [item.image] : (Array.isArray(item.images) ? item.images : []),
+        specifications: item.specs || item.specifications || {},
+        tags: [category, subcategory].filter(Boolean),
+        slug: `${slugBase}-${Date.now()}-${index + 1}`,
+      };
+
+      const existing = await db.Product.findOne({ sku });
+      if (existing) {
+        await db.Product.findByIdAndUpdate(existing._id, normalizedProduct, { new: true });
+        updatedCount += 1;
+      } else {
+        await db.Product.create(normalizedProduct);
+        createdCount += 1;
+      }
+    }
+
+    console.log(`✅ Synced products from ${path.basename(catalogPath)}: ${createdCount} created, ${updatedCount} updated.`);
+  } catch (err) {
+    console.error('❌ Failed to seed products from catalog:', err.message);
+  }
+}
 
 // Authentication middleware
 const requireAdmin = (req, res, next) => {

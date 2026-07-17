@@ -1190,5 +1190,13 @@
     "action": "Added product: Agricultural Roller Chain (SKU: SKU-1782069704187-42-1mn0-ehja)",
     "adminName": "System Administrator",
     "timestamp": "2026-06-21T19:46:06.122Z"
+  },
+  {
+    "_id": "3m4kjhw8a0d29amo5694pv",
+    "createdAt": "2026-07-16T19:08:56.916Z",
+    "updatedAt": "2026-07-16T19:08:56.916Z",
+    "action": "Deleted product: Agricultural Roller Chain (SKU: SKU-1000)",
+    "adminName": "System Administrator",
+    "timestamp": "2026-07-16T19:08:56.914Z"
   }
 ]

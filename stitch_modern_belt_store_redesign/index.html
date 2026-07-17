@@ -446,7 +446,7 @@
                             class="group relative aspect-[4/3] bg-primary overflow-hidden cursor-pointer block">
                             <div class="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity">
                                 <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAphQm7oX9l2HL5ucGSOaksubniFuNEdk05KyXEhSqY-zmi_ZwyUxAHLvv13D6ywtKbjzhT6hlLaFZYplOFbvbpudq1n9vQNqTH2nUIqdyfjGvgk1RFPmZl_poeo1b1wAjf7R0c_umLk60jnXEJGWNdw4jJaWd0TmvLrVK6LILtpXY3ElY2_OBdYlmIMeiOKmGDDbh5xcje5ka2lP0RZYcSQx_Ivft6tlQXGoG_jKq7xP6DZHMxpwiNcyq456tzA2IW_mlUG03Zlvw"
+                                    src="/mmmm/uploads/category_pulleys.gif"
                                     alt="Pulleys" />
                             </div>
                             <div class="absolute inset-0 p-8 flex flex-col justify-end text-on-primary">
@@ -462,7 +462,7 @@
                             class="group relative aspect-[4/3] bg-primary overflow-hidden cursor-pointer block">
                             <div class="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity">
                                 <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTuYshrExl5ox2V0fNcHp8zX8wVDeH1lZh_OFNnN1VFDNBm6xDWYQd3G12QsbH9Ndnegr3q9PgyclnnegBgXUUdMfoT5ORw_gM798_dGqWjuT7kVkhy8DM-1jZWVwvI9RC51TqBl-TBtRXYHtwWcFya-xZRqXz5azGUYZDRd8tbrJ7w3zMDikpVowU4dOqiKInL72JzoFJbc2rvanOaZidQC_A6Y9SvqAv6CDMASJR9vOmK3SUmjFAHDP6IfYrnjadTo3SFNyZyU0"
+                                    src="/mmmm/uploads/category_conveying.jpg"
                                     alt="Conveying Accessories" />
                             </div>
                             <div class="absolute inset-0 p-8 flex flex-col justify-end text-on-primary">
@@ -478,7 +478,7 @@
                             class="group relative aspect-[4/3] bg-primary overflow-hidden cursor-pointer block">
                             <div class="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity">
                                 <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR30Ar3i0rdy-uBP5gspZUtmsziarCGDUkxwcR9IRWg5wyn9nDTSkodpzeR_MWTrFXmcj15mUVaflBhEL_wk46LwekXZDEIAgczV8d4bq76yNQrx_gIi1s4_tn4w0n6qBaYMX1M-Ft7805Z0szWjySRQLcvpEEk5lIGBa1JUyoHhWdg2Uyxu8_nQ7o8599XCJzIsZUhnA7urXgHl4xUMfFl4IJksjYT5p0IpLkOI_xywo9O6yiJCrGOTd2nme2Oq-yy6_-hVmvGoY"
+                                    src="/mmmm/uploads/category_rubber.bmp"
                                     alt="Rubber" />
                             </div>
                             <div class="absolute inset-0 p-8 flex flex-col justify-end text-on-primary">
@@ -1007,7 +1007,7 @@
                         return;
                     }
                     featuredGrid.innerHTML = featuredProducts.map((p, idx) => {
-                        const globalIndex = p.slug || p._id || products.indexOf(p);
+                        const globalIndex = p._id || p.id || p.slug || p.sku || products.indexOf(p);
                         const image = getProductImage(p);
                         const ref = getProductRef(p);
                         const rawBadge = p.subcategory || p.category || 'Component';
@@ -1031,7 +1031,7 @@
                                 </div>
                                 <div class="mt-4 flex justify-between items-center">
                                     <span class="font-technical-label text-primary font-bold">Ref: ${ref}</span>
-                                    <a href="product-detail.html?id=${globalIndex}" data-i18n="view_specs_btn" class="bg-primary text-on-primary px-4 py-2 text-xs font-bold uppercase hover:bg-primary/90 transition">VIEW SPECS</a>
+                                    <a href="product-detail.html?id=${encodeURIComponent(globalIndex)}" data-i18n="view_specs_btn" class="bg-primary text-on-primary px-4 py-2 text-xs font-bold uppercase hover:bg-primary/90 transition">VIEW SPECS</a>
                                 </div>
                             </div>
                         </div>`;
@@ -1056,7 +1056,7 @@
                 .then(products => {
                     const firstSix = products.slice(0, 6);
                     ourProductsGrid.innerHTML = firstSix.map((p, idx) => {
-                        const globalIndex = p.slug || p._id || idx;
+                        const globalIndex = p._id || p.id || p.slug || p.sku || idx;
                         const image = getProductImage(p);
                         const ref = getProductRef(p);
                         const rawBadge = p.subcategory || p.category || 'Component';
@@ -1067,7 +1067,7 @@
                         return `
                         <div class="flex flex-col bg-surface-container-lowest border border-outline-variant overflow-hidden group rounded">
                             <div class="h-64 relative overflow-hidden bg-surface-container-low border-b border-outline-variant flex items-center justify-center p-4">
-                                <a href="product-detail.html?id=${globalIndex}">
+                                <a href="product-detail.html?id=${encodeURIComponent(globalIndex)}">
                                     <img class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105" src="${image}" alt="${title}" />
                                 </a>
                             </div>
@@ -1075,7 +1075,7 @@
                                 <div>
                                     <span class="px-2 py-1 bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold uppercase rounded">${badge}</span>
                                     <h4 class="font-headline-lg text-lg uppercase text-primary font-bold mt-2">
-                                        <a href="product-detail.html?id=${globalIndex}" class="hover:underline">${title}</a>
+                                        <a href="product-detail.html?id=${encodeURIComponent(globalIndex)}" class="hover:underline">${title}</a>
                                     </h4>
                                     <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">${shortDesc}</p>
                                 </div>
@@ -1169,7 +1169,7 @@
     <!-- AOS Init -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>AOS.init({ once: true, offset: 60, duration: 650, easing: 'ease-out-cubic' });</script>
-    <script src="products-data.js"></script>
+    <script src="products-data.js?v=20260716-fix-images"></script>
     <!-- i18n engine must load BEFORE nav-component so the language switcher can call window.i18n -->
     <script src="/i18n.js"></script>
     <script src="language-switcher.js"></script>

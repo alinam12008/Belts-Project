@@ -117,6 +117,8 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="custom-cursor.css">
+    <!-- Products data module must be loaded before main script -->
+    <script src="products-data.js?v=20260716-fix-images"></script>
 </head>
 <body class="bg-surface text-on-surface font-body-md" data-active-page="products">
     <!-- TopNavBar -->
@@ -486,6 +488,66 @@
 
 
     <script>
+    // ── Utility helpers ───────────────────────────────────────────────────
+    function slugify(str) {
+        return (str || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+
+    function getProductIdentifier(product) {
+        return product && (product._id || product.id || product.slug || product.sku || '');
+    }
+
+    function normalizeProduct(product, index) {
+        if (!product) return null;
+
+        if (product.productName && product.category !== undefined) {
+            return product;
+        }
+
+        const productName = product.name || product.title || product.productName || `Product ${index + 1}`;
+        const images = Array.isArray(product.images) && product.images.length > 0
+            ? product.images
+            : (product.image ? [product.image] : []);
+        let specs = product.specifications || {};
+        if (typeof specs === 'string') {
+            try { specs = JSON.parse(specs); } catch (e) { specs = { Description: specs }; }
+        }
+
+        return {
+            id: product._id || product.id || product.slug || product.sku || String(index),
+            _id: product._id || product.id || product.slug || product.sku || String(index),
+            slug: product.slug || slugify(productName),
+            productName,
+            category: product.category || '',
+            subcategory: product.subcategory || '',
+            images,
+            image: images[0] || '',
+            rawDescription: product.shortDescription || product.description || product.fullDescription || '',
+            fullDescription: product.description || product.shortDescription || product.fullDescription || '',
+            specifications: specs,
+            sku: product.sku || '',
+            source: 'api'
+        };
+    }
+
+    function findProductById(products, idParam) {
+        const lookupValue = decodeURIComponent(String(idParam || '')).trim();
+        if (!lookupValue) return null;
+
+        const normalizedLookup = lookupValue.toLowerCase();
+        return products.find((product, index) => {
+            const values = [
+                getProductIdentifier(product),
+                product && product.slug,
+                product && product.sku,
+                product && product.productName && slugify(product.productName),
+                String(index)
+            ].filter(Boolean);
+
+            return values.some(value => String(value).toLowerCase() === normalizedLookup);
+        }) || null;
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         const params = new URLSearchParams(window.location.search);
         const idParam = params.get('id');
@@ -495,19 +557,39 @@
             return;
         }
 
-        fetch('/api/products')
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to fetch products');
-                return response.json();
-            })
+        const loadProducts = async () => {
+            try {
+                const response = await fetch('/api/products', { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const data = await response.json();
+                const products = Array.isArray(data) ? data : [];
+                if (products.length === 0) {
+                    throw new Error('No products returned from API');
+                }
+                return products.map(normalizeProduct);
+            } catch (apiError) {
+                console.warn('Falling back to legacy product catalog:', apiError);
+                if (window.BeltsStore && window.BeltsStore.loadProducts) {
+                    const legacyProducts = await window.BeltsStore.loadProducts();
+                    return (legacyProducts || []).map(normalizeProduct);
+                }
+                throw apiError;
+            }
+        };
+
+        loadProducts()
             .then(products => {
-                const product = products.find(p => p.slug === idParam || p._id === idParam || p.sku === idParam || p.name === idParam) || products[parseInt(idParam)];
+                const product = findProductById(products, idParam);
                 if (!product) {
+                    console.warn('Product not found for id:', idParam);
                     window.location.href = "products.html";
                     return;
                 }
-                const index = products.indexOf(product);
-                renderProduct(product, index, products);
+
+                const index = products.findIndex(p => getProductIdentifier(p) === getProductIdentifier(product));
+                renderProduct(product, index >= 0 ? index : 0, products);
             })
             .catch(error => {
                 console.error("Error loading product detail:", error);
@@ -516,40 +598,37 @@
     });
 
     function renderProduct(product, index, allProducts) {
-        // same as before but using product from API
-        document.title = `${product.name || 'Product'} | BELTS STORE`;
+        document.title = `${product.productName || 'Product'} | BELTS STORE`;
 
-        // Build breadcrumbs from category/subcategory/subSubcategory
-        const breadcrumbs = [];
-        if (product.category) breadcrumbs.push(product.category);
-        if (product.subcategory) breadcrumbs.push(product.subcategory);
-        if (product.subSubcategory) breadcrumbs.push(product.subSubcategory);
-
+        // Build breadcrumbs from category/subcategory
         const breadContainer = document.getElementById('pdp-breadcrumbs');
         let pathHtml = `<a href="products.html" class="hover:text-primary transition-colors">Catalog</a>`;
-        breadcrumbs.forEach(b => {
-            pathHtml += ` <span class="material-symbols-outlined text-xs">chevron_right</span> <span class="text-on-surface font-semibold">${b}</span>`;
-        });
+        if (product.category) {
+            pathHtml += ` <span class="material-symbols-outlined text-xs">chevron_right</span> <span class="text-on-surface font-semibold">${product.category}</span>`;
+        }
+        if (product.subcategory) {
+            pathHtml += ` <span class="material-symbols-outlined text-xs">chevron_right</span> <span class="text-on-surface font-semibold">${product.subcategory}</span>`;
+        }
         breadContainer.innerHTML = pathHtml;
 
-        // Image
-        const image = product.image || product.images?.[0] || 'https://belts-store.com/wp-content/uploads/2025/09/BELTS-STORE_en-1.svg';
+        // Image – support both 'images' array and 'image' string
+        const image = (product.images && product.images[0]) || 'https://belts-store.com/wp-content/uploads/2025/09/BELTS-STORE_en-1.svg';
         document.getElementById('product-main-image').src = image;
-        document.getElementById('product-main-image').alt = product.name || 'Product';
+        document.getElementById('product-main-image').alt = product.productName || 'Product';
 
-        // Title
-        document.getElementById('product-title').innerText = product.name || 'Unnamed Product';
+        // Title & badge
+        document.getElementById('product-title').innerText = product.productName || 'Unnamed Product';
         document.getElementById('product-cat-badge').innerText = product.subcategory || product.category || 'Component';
 
-        // Reference
+        // Reference – prefer SKU
         const ref = product.sku || product.specifications?.DIN || product.specifications?.ISO || 'BT-GENERIC';
         document.getElementById('product-ref-label').innerText = `Ref: ${ref}`;
 
         // Descriptions
-        document.getElementById('product-short-desc').innerHTML = product.shortDescription || '<p>Industrial grade component matching strict performance standards.</p>';
-        document.getElementById('product-long-desc').innerHTML = product.description || '<p>Detailed description and catalog files are available upon inquiry.</p>';
+        document.getElementById('product-short-desc').innerHTML = product.rawDescription || '<p>Industrial grade component matching strict performance standards.</p>';
+        document.getElementById('product-long-desc').innerHTML = product.fullDescription || '<p>Detailed description and catalog files are available upon inquiry.</p>';
 
-        // Specifications
+        // Specifications table
         const specs = product.specifications || {};
         const tableContainer = document.getElementById('specs-table-container');
         const hasSpecs = Object.keys(specs).length > 0;
@@ -581,7 +660,7 @@
             `;
         }
 
-        // Quantity controls (same as before)
+        // Quantity controls
         const qtyInput = document.getElementById('product-quantity');
         document.getElementById('qty-dec-btn').addEventListener('click', () => {
             const val = parseInt(qtyInput.value) || 1;
@@ -592,26 +671,25 @@
             qtyInput.value = val + 1;
         });
 
-        // Action buttons (reuse existing functions)
+        // Action buttons
         document.getElementById('add-to-cart-action-btn').addEventListener('click', () => {
             const qty = parseInt(qtyInput.value) || 1;
             if (window.addToCartManual) {
-                window.addToCartManual(`ref-${index}`, product.name, image, ref, qty);
+                window.addToCartManual(product.id || `ref-${index}`, product.productName, image, ref, qty);
             }
         });
 
-        // WhatsApp and Quote (similar to previous)
         document.getElementById('whatsapp-inquiry-action-btn').addEventListener('click', () => {
             const qty = parseInt(qtyInput.value) || 1;
             if (window.sendWhatsAppSingleInquiry) {
-                window.sendWhatsAppSingleInquiry(product.name, ref, qty);
+                window.sendWhatsAppSingleInquiry(product.productName, ref, qty);
             }
         });
 
         document.getElementById('request-quote-action-btn').addEventListener('click', () => {
             const qty = parseInt(qtyInput.value) || 1;
             if (window.addToCartManual) {
-                window.addToCartManual(`ref-${index}`, product.name, image, ref, qty);
+                window.addToCartManual(product.id || `ref-${index}`, product.productName, image, ref, qty);
             }
             document.getElementById('cart-quote-btn').click();
         });
@@ -629,10 +707,9 @@
         });
 
         if (related.length < 3) {
-            const targetCat = product.category;
             related = allProducts.filter((p, idx) => {
                 if (idx === index) return false;
-                return p.category === targetCat;
+                return p.category === product.category;
             });
         }
 
@@ -644,21 +721,21 @@
         }
 
         grid.innerHTML = showRelated.map(p => {
-            const pLink = p.slug || p._id || allProducts.indexOf(p);
+            const pLink = getProductIdentifier(p) || slugify(p.productName);
             const ref = p.sku || p.specifications?.DIN || p.specifications?.ISO || 'BT-GENERIC';
             const cleanRef = ref.length > 20 ? ref.substring(0, 17) + "..." : ref;
-            const img = p.image || p.images?.[0] || 'https://belts-store.com/wp-content/uploads/2025/09/BELTS-STORE_en-1.svg';
+            const img = (p.images && p.images[0]) || 'https://belts-store.com/wp-content/uploads/2025/09/BELTS-STORE_en-1.svg';
             return `
                 <div class="flex bg-surface-container-lowest border border-outline-variant overflow-hidden group rounded transition-all hover:border-primary">
                     <div class="w-1/3 bg-surface-container-low border-r border-outline-variant flex items-center justify-center p-2">
                         <a href="product-detail.html?id=${pLink}" class="h-full w-full flex items-center justify-center">
-                            <img class="max-h-full max-w-full object-contain" src="${img}" alt="${p.name}"/>
+                            <img class="max-h-full max-w-full object-contain" src="${img}" alt="${p.productName}"/>
                         </a>
                     </div>
                     <div class="w-2/3 p-4 flex flex-col justify-between">
                         <div>
                             <h4 class="font-bold text-xs uppercase text-primary truncate hover:underline">
-                                <a href="product-detail.html?id=${pLink}">${p.name}</a>
+                                <a href="product-detail.html?id=${pLink}">${p.productName}</a>
                             </h4>
                             <span class="font-technical-label text-[10px] text-on-surface-variant block mt-1" title="${ref}">Ref: ${cleanRef}</span>
                         </div>

@@ -258,7 +258,7 @@
                 "Emergency and Transport Belts",
                 "Timing Belts",
                 "Special Belts",
-                "Measurement and Testing Tools"
+                "Repair Kits and Tension Tools"
             ],
             "PULLEYS": [],
             "CONVEYING ACCESSORIES": [],
@@ -335,12 +335,14 @@
         console.log('✅ Latest version loaded - duplicates will be removed');
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Load products from local module
-            BeltsStore.loadProducts()
+            fetch('/api/products', { cache: 'no-store' })
+                .then(res => {
+                    if (!res.ok) throw new Error('Failed to load products');
+                    return res.json();
+                })
                 .then(data => {
-                    console.log('First product raw:', data[0]);
-                    console.log('First product name:', data[0]?.name || 'undefined');
-                    allProducts = data.map((product, index) => {
+                    const products = Array.isArray(data) ? data : [];
+                    allProducts = products.map((product, index) => {
                         // -------- DEDUPLICATE BREADCRUMBS (case‑insensitive) and CLEAN each field --------
                         const breadcrumbs = [];
                         const seen = new Set();
@@ -370,7 +372,7 @@
                         }
 
                         // -------- Clean title (remove repeated phrases) --------
-                        const rawName = product.productName || product.name || product.title || '';
+                        const rawName = product.name || product.productName || product.title || '';
                         const originalName = rawName.trim() || 'Unnamed Product';
                         const title = cleanTitle(originalName);
                         
@@ -402,11 +404,11 @@
                         }
 
                         return {
-                            id: product.id || index,
+                            id: product._id || product.id || index,
                             title: title,
                             breadcrumbs: breadcrumbs,
                             image: image,
-                            short_description: product.shortDescription || 'Industrial grade component designed for high reliability.',
+                            short_description: product.shortDescription || product.description || 'Industrial grade component designed for high reliability.',
                             specs: specs,
                             sku: product.sku || product.original?.sku || null,
                             originalName: originalName // for debugging
@@ -427,9 +429,9 @@
                     filterAndRenderProducts();
                 })
                 .catch(error => {
-                    console.error("Error loading products from data file:", error);
+                    console.error("Error loading products from API:", error);
                     const errorTitle = (window.i18n && window.i18n.t) ? window.i18n.t('error_load_products') : 'Could not load products';
-                    const errorDesc = (window.i18n && window.i18n.t) ? window.i18n.t('error_backend_not_running') : 'Please ensure products_data.json is accessible.';
+                    const errorDesc = (window.i18n && window.i18n.t) ? window.i18n.t('error_backend_not_running') : 'Please ensure the server product API is accessible.';
                     document.getElementById('products-grid').innerHTML = `
                         <div class="col-span-full text-center p-12 bg-surface-container-lowest border border-outline-variant rounded">
                             <span class="material-symbols-outlined text-6xl text-error opacity-60 mb-4">error</span>
@@ -785,7 +787,8 @@
                 }
                 
                 const shortDescText = rawDescText.length > 100 ? rawDescText.substring(0, 100) + "..." : rawDescText;
-                const detailLink = `product-detail.html?id=${product.id}`;
+                const productId = product.id || product._id || product.slug || product.sku || '';
+                const detailLink = `product-detail.html?id=${encodeURIComponent(productId)}`;
 
                 return `
                     <div class="flex flex-col bg-surface-container-lowest border border-outline-variant overflow-hidden group rounded-lg transition-all hover:shadow-lg hover:border-primary">
@@ -822,7 +825,7 @@
             }).join('');
         }
     </script>
-<script src="products-data.js"></script>
+<script src="products-data.js?v=20260716-fix-images"></script>
 <script src="/i18n.js"></script>
 <script src="language-switcher.js"></script>
 <script src="custom-cursor.js"></script>

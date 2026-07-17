@@ -2,7 +2,7 @@
   {
     "_id": "so2ytpe364hwrmzz9upr4",
     "createdAt": "2026-06-21T10:41:10.501Z",
-    "updatedAt": "2026-06-30T08:29:42.773Z",
+    "updatedAt": "2026-07-16T20:48:22.226Z",
     "name": "System Administrator",
     "email": "admin@gmail.com",
     "password": "$2b$10$fruFFKUpVipSImTtFeaXyOwtg4239JBiuwwjnTXLWPvYn2ajO53C2",
@@ -80,6 +80,21 @@
       },
       {
         "timestamp": "2026-06-30T08:29:42.772Z",
+        "ip": "::1",
+        "status": "Success"
+      },
+      {
+        "timestamp": "2026-07-16T18:25:06.939Z",
+        "ip": "::1",
+        "status": "Success"
+      },
+      {
+        "timestamp": "2026-07-16T20:21:26.703Z",
+        "ip": "::1",
+        "status": "Success"
+      },
+      {
+        "timestamp": "2026-07-16T20:48:22.225Z",
         "ip": "::1",
         "status": "Success"
       }

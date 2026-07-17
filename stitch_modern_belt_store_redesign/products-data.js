@@ -48,19 +48,25 @@
     }
 
     function normalize(raw, index) {
-        const slug = slugify(raw.title);
+        const title = raw.title || raw.productName || raw.name || `Product ${index + 1}`;
+        const breadcrumbs = Array.isArray(raw.breadcrumbs) ? raw.breadcrumbs : [];
+        const slug = slugify(title);
+        const category = breadcrumbs[0] || raw.category || 'General';
+        const subcategory = breadcrumbs[1] || raw.subcategory || null;
+
         return {
-            id: slug || ('product-' + index),
-            category: (raw.breadcrumbs && raw.breadcrumbs[0]) || 'General',
-            subcategory: (raw.breadcrumbs && raw.breadcrumbs[1]) || null,
-            productName: raw.title || 'Unnamed Product',
-            description: stripHtml(raw.short_description),
-            rawDescription: raw.short_description || '',
-            fullDescription: raw.full_description || '',
-            specifications: raw.specs || {},
-            images: raw.image ? [raw.image] : [],
+            id: raw.id || slug || ('product-' + index),
+            category,
+            subcategory,
+            productName: title,
+            description: stripHtml(raw.short_description || raw.description || raw.full_description || ''),
+            rawDescription: raw.short_description || raw.description || raw.full_description || '',
+            fullDescription: raw.full_description || raw.description || raw.short_description || '',
+            specifications: raw.specs || raw.specifications || {},
+            images: raw.image ? [raw.image] : (Array.isArray(raw.images) ? raw.images : []),
             relatedProducts: raw.related || [],
-            sourceUrl: raw.url || '',
+            sourceUrl: raw.url || raw.sourceUrl || '',
+            sku: raw.sku || '',
         };
     }
 
@@ -70,15 +76,29 @@
         if (_loaded) return _products;
         if (_loadPromise) return _loadPromise;
 
-        _loadPromise = fetch('products_data.json')
-            .then(r => r.json())
+        const loadFromUrl = async (url) => {
+            const response = await fetch(url, { cache: 'no-store' });
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status} for ${url}`);
+            }
+
+            const raw = await response.json();
+            if (!Array.isArray(raw) || raw.length < 10) {
+                throw new Error(`Unexpected product count (${Array.isArray(raw) ? raw.length : 'n/a'}) from ${url}`);
+            }
+
+            return raw;
+        };
+
+        _loadPromise = loadFromUrl('products_data.json?v=20260716-fix-images')
+            .catch(() => loadFromUrl('../data/products-backup.json'))
             .then(raw => {
                 _products = raw.map(normalize);
                 _loaded = true;
                 return _products;
             })
             .catch(err => {
-                console.error('[BeltsStore] Failed to load products_data.json:', err);
+                console.error('[BeltsStore] Failed to load product catalog:', err);
                 _products = [];
                 _loaded = true;
                 return _products;
