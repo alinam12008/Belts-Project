@@ -2136,18 +2136,55 @@
             .catch(err => showToast(err.message, "error"));
         }
 
-        function handleDeleteProduct(id) {
-            if (!confirm("Are you sure you want to permanently delete this product?")) return;
-            fetch(`/api/products/${id}`, {
-                method: 'DELETE',
-                headers: { 'Authorization': `Bearer ${token}` }
-            })
-            .then(async res => {
-                if (!res.ok) throw new Error();
+        async function handleDeleteProduct(id) {
+            const confirmed = window.confirm("Are you sure you want to permanently delete this product?");
+            if (!confirmed) return;
+
+            const username = window.prompt("Enter your admin username or email:", "");
+            if (!username) return;
+            const password = window.prompt("Enter your admin password:", "");
+            if (!password) return;
+            const verificationCode = window.prompt("Enter the 2FA verification code:", "");
+            if (!verificationCode) return;
+
+            try {
+                const verifyResp = await fetch('/api/admin/request-delete-verification', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ email: username, password })
+                });
+                const verifyData = await verifyResp.json();
+                if (!verifyResp.ok) throw new Error(verifyData.error || 'Credential verification failed');
+
+                const confirmResp = await fetch('/api/admin/confirm-delete-verification', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ email: verifyData.email, code: verificationCode })
+                });
+                const confirmData = await confirmResp.json();
+                if (!confirmResp.ok) throw new Error(confirmData.error || '2FA verification failed');
+
+                const deleteResp = await fetch(`/api/products/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'x-delete-verified': 'true'
+                    }
+                });
+                const deleteData = await deleteResp.json().catch(() => ({}));
+                if (!deleteResp.ok) throw new Error(deleteData.error || 'Failed to delete product');
+
                 showToast("Product deleted successfully.", "success");
                 loadProductsData();
-            })
-            .catch(() => showToast("Failed to delete product", "error"));
+            } catch (err) {
+                showToast(err.message || 'Failed to delete product', 'error');
+            }
         }
 
         function handleUpdateOrderStatus(id, status) {

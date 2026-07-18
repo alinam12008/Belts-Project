@@ -332,6 +332,74 @@ app.post('/api/admin/verify-2fa', async (req, res) => {
   }
 });
 
+app.post('/api/admin/request-delete-verification', requireAdmin, async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Username/email and password are required' });
+    }
+
+    const admin = await db.Admin.findById(req.admin.id);
+    if (!admin) {
+      return res.status(404).json({ error: 'Admin account not found' });
+    }
+
+    const normalizedEmail = String(email).trim().toLowerCase();
+    const isEmailMatch = normalizedEmail === String(admin.email).trim().toLowerCase();
+    const isNameMatch = String(admin.name || '').trim().toLowerCase() === normalizedEmail;
+
+    if (!isEmailMatch && !isNameMatch) {
+      return res.status(401).json({ error: 'Admin username or email does not match the current signed-in account' });
+    }
+
+    const credentialMatch = await bcrypt.compare(password, admin.password);
+    if (!credentialMatch) {
+      return res.status(401).json({ error: 'Admin password is incorrect' });
+    }
+
+    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    pending2fa.set(admin.email, {
+      code,
+      expires: Date.now() + 5 * 60 * 1000,
+      adminId: admin._id,
+      purpose: 'delete-product'
+    });
+
+    console.log(`[Delete Verification] Code for ${admin.email} is: ${code}`);
+    res.json({ success: true, email: admin.email, devCode: code, message: 'Credential verification succeeded. Enter the 2FA code below.' });
+  } catch (err) {
+    console.error('Delete verification request failed:', err);
+    res.status(500).json({ error: 'Failed to start delete verification' });
+  }
+});
+
+app.post('/api/admin/confirm-delete-verification', requireAdmin, async (req, res) => {
+  try {
+    const { email, code } = req.body;
+    if (!email || !code) {
+      return res.status(400).json({ error: 'Email and 2FA code are required' });
+    }
+
+    const session = pending2fa.get(email);
+    if (!session || session.purpose !== 'delete-product') {
+      return res.status(400).json({ error: 'Delete verification session not found or expired. Please retry.' });
+    }
+    if (Date.now() > session.expires) {
+      pending2fa.delete(email);
+      return res.status(400).json({ error: 'Delete verification code expired. Please retry.' });
+    }
+    if (session.code !== code) {
+      return res.status(401).json({ error: 'Incorrect 2FA code for delete confirmation' });
+    }
+
+    pending2fa.delete(email);
+    res.json({ success: true, message: 'Delete confirmation verified.' });
+  } catch (err) {
+    console.error('Delete verification confirmation failed:', err);
+    res.status(500).json({ error: 'Delete verification failed' });
+  }
+});
+
 app.get('/api/admin/me', requireAdmin, async (req, res) => {
   try {
     const admin = await db.Admin.findById(req.admin.id);
@@ -644,6 +712,10 @@ app.put('/api/products/:id', requireAdmin, async (req, res) => {
 // DELETE /api/products/:id
 app.delete('/api/products/:id', requireAdmin, async (req, res) => {
   try {
+    if (req.headers['x-delete-verified'] !== 'true') {
+      return res.status(403).json({ error: 'Delete action must be verified by admin credentials and 2FA.' });
+    }
+
     const deleted = await db.Product.findByIdAndDelete(req.params.id);
     if (!deleted) return res.status(404).json({ error: 'Product not found' });
 
@@ -691,6 +763,12 @@ app.post('/api/products/upload', requireAdmin, async (req, res) => {
     const dataUri = base64.startsWith('data:')
       ? base64
       : `data:image/jpeg;base64,${base64}`;
+
+    const hasCloudinaryConfig = Boolean(process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && process.env.CLOUDINARY_API_SECRET);
+    if (!hasCloudinaryConfig) {
+      console.warn('Cloudinary config missing; returning the uploaded image as a data URL so products can still be saved.');
+      return res.json({ url: dataUri });
+    }
 
     // 4. Build a unique public_id — Date.now() guarantees no collisions, so overwrite is not needed
     const publicId = `belts-store/${Date.now()}_${filename.replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9_-]/g, '_')}`;

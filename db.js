@@ -343,14 +343,8 @@ db.init = async function (mongoUri, defaultEmail, defaultPassword) {
     }
   }
 
-  // 3. Seed Products from products_data.json
-  // Delete all other products to only keep the requested ones (SKU-1000, SKU-1001, SKU-1002)
-  try {
-    await db.Product.deleteMany({ sku: { $nin: ['SKU-1000', 'SKU-1001', 'SKU-1002'] } });
-  } catch (err) {
-    console.error('Error cleaning up non-requested products:', err.message);
-  }
-
+  // 3. Seed Products from products_data.json only when the catalog is empty.
+  // This preserves admin-created products across restarts and deployments.
   const productCount = await db.Product.countDocuments();
   if (productCount === 0) {
     const productsJsonPath = path.join(__dirname, 'stitch_modern_belt_store_redesign', 'products_data.json');
