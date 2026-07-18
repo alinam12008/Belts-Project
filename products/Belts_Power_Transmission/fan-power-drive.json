@@ -1,0 +1,22 @@
+{
+  "name": "Fan Power Drive",
+  "description": "Fan Power Drive",
+  "shortDescription": "Fan Power Drive",
+  "category": "Belts Power Transmission",
+  "subcategory": "Timing Belts",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069698880-42-ad6j",
+  "price": 391,
+  "discountPrice": 369,
+  "images": [
+    "https://belts-store.com/wp-content/uploads/2011/07/omega_hp_fanpower-1.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Belts Power Transmission",
+    "Timing Belts"
+  ],
+  "stock": 46,
+  "status": "Active",
+  "slug": "fan-power-drive"
+}

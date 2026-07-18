@@ -1,0 +1,21 @@
+{
+  "name": "Heat Insulation Tape (Ordinary-No Insertion)",
+  "description": "Heat Insulation Tape (Ordinary-No Insertion)",
+  "shortDescription": "Heat Insulation Tape (Ordinary-No Insertion)",
+  "category": "Industrial Insulation",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069702062-26-zm56",
+  "price": 330,
+  "discountPrice": 297,
+  "images": [
+    "/mmmm/uploads/SKU-1782069702062-26-zm56.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Industrial Insulation"
+  ],
+  "stock": 86,
+  "status": "Active",
+  "slug": "heat-insulation-tape-ordinary-no-insertion"
+}

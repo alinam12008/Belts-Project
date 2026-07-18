@@ -1,0 +1,21 @@
+{
+  "name": "Felt Sheet",
+  "description": "Felt Sheet",
+  "shortDescription": "Felt Sheet",
+  "category": "Industrial Insulation",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069702843-6-57jk",
+  "price": 232,
+  "discountPrice": 208,
+  "images": [
+    "/mmmm/uploads/SKU-1782069702843-6-57jk.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Industrial Insulation"
+  ],
+  "stock": 89,
+  "status": "Active",
+  "slug": "felt-sheet"
+}

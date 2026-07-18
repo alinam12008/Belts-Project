@@ -1,0 +1,22 @@
+{
+  "name": "Tapered Roller Bearings",
+  "description": "Tapered Roller Bearings",
+  "shortDescription": "Tapered Roller Bearings",
+  "category": "Bearings",
+  "subcategory": "Radial Roller Bearings",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069703117-14-spjd",
+  "price": 245,
+  "discountPrice": 226,
+  "images": [
+    "https://belts-store.com/wp-content/uploads/2017/04/Tapered_Roller_Bearings-1.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Bearings",
+    "Radial Roller Bearings"
+  ],
+  "stock": 75,
+  "status": "Active",
+  "slug": "tapered-roller-bearings"
+}

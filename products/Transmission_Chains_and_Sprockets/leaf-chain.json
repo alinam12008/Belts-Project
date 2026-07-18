@@ -1,0 +1,22 @@
+{
+  "name": "Leaf Chain",
+  "description": "Leaf Chain",
+  "shortDescription": "Leaf Chain",
+  "category": "Transmission Chains and Sprockets",
+  "subcategory": "Transmission chain",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069704187-38-mb46",
+  "price": 224,
+  "discountPrice": 191,
+  "images": [
+    "/mmmm/uploads/SKU-1782069704187-38-mb46.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Transmission Chains and Sprockets",
+    "Transmission chain"
+  ],
+  "stock": 64,
+  "status": "Active",
+  "slug": "leaf-chain"
+}

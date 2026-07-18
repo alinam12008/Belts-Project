@@ -1,0 +1,22 @@
+{
+  "name": "Cylindrical Roller Bearings",
+  "description": "Cylindrical Roller Bearings",
+  "shortDescription": "Cylindrical Roller Bearings",
+  "category": "Bearings",
+  "subcategory": "Radial Roller Bearings",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069703118-34-10gz",
+  "price": 308,
+  "discountPrice": 284,
+  "images": [
+    "https://belts-store.com/wp-content/uploads/2017/04/Cylindrical_Roller_Bearings-1.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Bearings",
+    "Radial Roller Bearings"
+  ],
+  "stock": 34,
+  "status": "Active",
+  "slug": "cylindrical-roller-bearings"
+}

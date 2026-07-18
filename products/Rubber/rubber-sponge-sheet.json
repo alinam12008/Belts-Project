@@ -1,0 +1,21 @@
+{
+  "name": "Rubber Sponge Sheet",
+  "description": "Rubber Sponge Sheet",
+  "shortDescription": "Rubber Sponge Sheet",
+  "category": "Rubber",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069701782-18-3qqj",
+  "price": 277,
+  "discountPrice": 246,
+  "images": [
+    "/mmmm/uploads/SKU-1782069701782-18-3qqj.bmp"
+  ],
+  "specifications": {},
+  "tags": [
+    "Rubber"
+  ],
+  "stock": 43,
+  "status": "Active",
+  "slug": "rubber-sponge-sheet"
+}

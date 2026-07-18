@@ -1,0 +1,21 @@
+{
+  "name": "Rubber Glass Moulding",
+  "description": "Rubber Glass Moulding",
+  "shortDescription": "Rubber Glass Moulding",
+  "category": "Rubber",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069701782-30-yyvo",
+  "price": 109,
+  "discountPrice": 84,
+  "images": [
+    "/mmmm/uploads/SKU-1782069701782-30-yyvo.bmp"
+  ],
+  "specifications": {},
+  "tags": [
+    "Rubber"
+  ],
+  "stock": 27,
+  "status": "Active",
+  "slug": "rubber-glass-moulding"
+}

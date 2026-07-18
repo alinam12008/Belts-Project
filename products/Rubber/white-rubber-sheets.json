@@ -1,0 +1,21 @@
+{
+  "name": "White Rubber Sheets",
+  "description": "White Rubber Sheets",
+  "shortDescription": "White Rubber Sheets",
+  "category": "Rubber",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069701781-10-vq3f",
+  "price": 178,
+  "discountPrice": 163,
+  "images": [
+    "/mmmm/uploads/SKU-1782069701781-10-vq3f.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Rubber"
+  ],
+  "stock": 23,
+  "status": "Active",
+  "slug": "white-rubber-sheets"
+}

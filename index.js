@@ -400,6 +400,146 @@ app.get('/api/products', async (req, res) => {
   }
 });
 
+// ============================================================
+// Category-based browse routes
+// ============================================================
+
+/**
+ * Converts a human-readable string → URL-friendly slug
+ * e.g. "Belts Power Transmission" → "belts-power-transmission"
+ */
+function toSlug(str) {
+  return (str || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * GET /api/categories
+ * Returns a structured map of all categories and their subcategories,
+ * with URL-friendly slugs and product counts.
+ *
+ * Example response:
+ * [
+ *   {
+ *     "name": "Belts Power Transmission",
+ *     "slug": "belts-power-transmission",
+ *     "productCount": 46,
+ *     "subcategories": [
+ *       { "name": "V Belts", "slug": "v-belts", "productCount": 10 },
+ *       ...
+ *     ]
+ *   },
+ *   ...
+ * ]
+ */
+app.get('/api/categories', async (req, res) => {
+  try {
+    const products = await db.Product.find({ status: 'Active' });
+
+    const catMap = {};
+    for (const p of products) {
+      const cat = (p.category || 'Uncategorized').trim();
+      const sub = (p.subcategory || '').trim();
+      if (!catMap[cat]) catMap[cat] = { total: 0, subs: {} };
+      catMap[cat].total += 1;
+      if (sub) {
+        if (!catMap[cat].subs[sub]) catMap[cat].subs[sub] = 0;
+        catMap[cat].subs[sub] += 1;
+      }
+    }
+
+    const result = Object.entries(catMap).map(([name, data]) => ({
+      name,
+      slug: toSlug(name),
+      productCount: data.total,
+      subcategories: Object.entries(data.subs).map(([subName, count]) => ({
+        name: subName,
+        slug: toSlug(subName),
+        productCount: count
+      }))
+    }));
+
+    res.json(result);
+  } catch (err) {
+    console.error('Failed to fetch categories:', err);
+    res.status(500).json({ error: 'Failed to fetch categories' });
+  }
+});
+
+/**
+ * GET /api/products/category/:category
+ * Returns all active products in a given category (matched by slug).
+ *
+ * Example:  GET /api/products/category/belts-power-transmission
+ */
+app.get('/api/products/category/:category', async (req, res) => {
+  try {
+    const categorySlug = req.params.category.toLowerCase();
+    const allProducts = await db.Product.find({ status: 'Active' });
+
+    const matched = allProducts.filter(p =>
+      toSlug(p.category || '') === categorySlug
+    );
+
+    if (matched.length === 0) {
+      return res.status(404).json({
+        error: `No products found for category "${req.params.category}"`,
+        hint: 'Use GET /api/categories to see all valid category slugs'
+      });
+    }
+
+    res.json({
+      category: matched[0].category,
+      slug: categorySlug,
+      total: matched.length,
+      products: matched
+    });
+  } catch (err) {
+    console.error('Failed to fetch products by category:', err);
+    res.status(500).json({ error: 'Failed to fetch products by category' });
+  }
+});
+
+/**
+ * GET /api/products/category/:category/:subcategory
+ * Returns all active products in a given category AND subcategory (matched by slug).
+ *
+ * Example:  GET /api/products/category/belts-power-transmission/v-belts
+ */
+app.get('/api/products/category/:category/:subcategory', async (req, res) => {
+  try {
+    const categorySlug    = req.params.category.toLowerCase();
+    const subcategorySlug = req.params.subcategory.toLowerCase();
+    const allProducts     = await db.Product.find({ status: 'Active' });
+
+    const matched = allProducts.filter(p =>
+      toSlug(p.category    || '') === categorySlug &&
+      toSlug(p.subcategory || '') === subcategorySlug
+    );
+
+    if (matched.length === 0) {
+      return res.status(404).json({
+        error: `No products found for "${req.params.category} > ${req.params.subcategory}"`,
+        hint: 'Use GET /api/categories to see all valid slugs'
+      });
+    }
+
+    res.json({
+      category: matched[0].category,
+      subcategory: matched[0].subcategory,
+      slug: `${categorySlug}/${subcategorySlug}`,
+      total: matched.length,
+      products: matched
+    });
+  } catch (err) {
+    console.error('Failed to fetch products by subcategory:', err);
+    res.status(500).json({ error: 'Failed to fetch products by subcategory' });
+  }
+});
+
 // POST /api/products
 app.post('/api/products', requireAdmin, async (req, res) => {
   try {

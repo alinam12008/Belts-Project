@@ -1,0 +1,22 @@
+{
+  "name": "Sprockets",
+  "description": "Sprockets",
+  "shortDescription": "Sprockets",
+  "category": "Transmission Chains and Sprockets",
+  "subcategory": "Sprockets",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069704186-10-esfa",
+  "price": 180,
+  "discountPrice": 153,
+  "images": [
+    "/mmmm/uploads/SKU-1782069704186-10-esfa.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Transmission Chains and Sprockets",
+    "Sprockets"
+  ],
+  "stock": 34,
+  "status": "Active",
+  "slug": "sprockets"
+}

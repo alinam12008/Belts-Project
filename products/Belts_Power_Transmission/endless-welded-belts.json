@@ -1,0 +1,22 @@
+{
+  "name": "Endless-Welded Belts",
+  "description": "Endless-Welded Belts",
+  "shortDescription": "Endless-Welded Belts",
+  "category": "Belts Power Transmission",
+  "subcategory": "Timing Belts",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069699901-46-vd85",
+  "price": 200,
+  "discountPrice": 176,
+  "images": [
+    "https://belts-store.com/wp-content/uploads/2011/07/rte_alpa_v_kl_mg-1.gif"
+  ],
+  "specifications": {},
+  "tags": [
+    "Belts Power Transmission",
+    "Timing Belts"
+  ],
+  "stock": 90,
+  "status": "Active",
+  "slug": "endless-welded-belts"
+}

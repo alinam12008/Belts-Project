@@ -1,0 +1,22 @@
+{
+  "name": "Conveyor Chain",
+  "description": "Conveyor Chain",
+  "shortDescription": "Conveyor Chain",
+  "category": "Transmission Chains and Sprockets",
+  "subcategory": "Transmission chain",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069704187-30-kbax",
+  "price": 146,
+  "discountPrice": 120,
+  "images": [
+    "/mmmm/uploads/SKU-1782069704187-30-kbax.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Transmission Chains and Sprockets",
+    "Transmission chain"
+  ],
+  "stock": 46,
+  "status": "Active",
+  "slug": "conveyor-chain"
+}

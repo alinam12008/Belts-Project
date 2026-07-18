@@ -1,0 +1,22 @@
+{
+  "name": "Optibelt KK",
+  "description": "Optibelt KK",
+  "shortDescription": "Optibelt KK",
+  "category": "Belts Power Transmission",
+  "subcategory": "Special Belts",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069696802-34-nw8i",
+  "price": 140,
+  "discountPrice": 112,
+  "images": [
+    "https://belts-store.com/wp-content/uploads/2025/10/Produktbild_Sonstige-Riemen_optibelt-KK-Kunststoffkeilriemen_RGB-1-247x296.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Belts Power Transmission",
+    "Special Belts"
+  ],
+  "stock": 10,
+  "status": "Active",
+  "slug": "optibelt-kk"
+}

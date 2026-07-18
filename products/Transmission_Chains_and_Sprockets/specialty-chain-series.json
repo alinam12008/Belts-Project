@@ -1,0 +1,22 @@
+{
+  "name": "Specialty Chain Series",
+  "description": "Specialty Chain Series",
+  "shortDescription": "Specialty Chain Series",
+  "category": "Transmission Chains and Sprockets",
+  "subcategory": "Transmission chain",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069704974-0-el56",
+  "price": 392,
+  "discountPrice": 361,
+  "images": [
+    "/mmmm/uploads/SKU-1782069704974-0-el56.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Transmission Chains and Sprockets",
+    "Transmission chain"
+  ],
+  "stock": 76,
+  "status": "Active",
+  "slug": "specialty-chain-series"
+}

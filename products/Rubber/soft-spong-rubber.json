@@ -1,0 +1,21 @@
+{
+  "name": "Soft Spong Rubber",
+  "description": "Soft Spong Rubber",
+  "shortDescription": "Soft Spong Rubber",
+  "category": "Rubber",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069701782-22-unty",
+  "price": 356,
+  "discountPrice": 329,
+  "images": [
+    "/mmmm/uploads/SKU-1782069701782-22-unty.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Rubber"
+  ],
+  "stock": 62,
+  "status": "Active",
+  "slug": "soft-spong-rubber"
+}

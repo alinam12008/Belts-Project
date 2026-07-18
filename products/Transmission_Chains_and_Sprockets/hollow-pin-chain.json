@@ -1,0 +1,22 @@
+{
+  "name": "Hollow Pin Chain",
+  "description": "Hollow Pin Chain",
+  "shortDescription": "Hollow Pin Chain",
+  "category": "Transmission Chains and Sprockets",
+  "subcategory": "Transmission chain",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069704186-22-e3ij",
+  "price": 159,
+  "discountPrice": 125,
+  "images": [
+    "/mmmm/uploads/SKU-1782069704186-22-e3ij.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Transmission Chains and Sprockets",
+    "Transmission chain"
+  ],
+  "stock": 65,
+  "status": "Active",
+  "slug": "hollow-pin-chain"
+}

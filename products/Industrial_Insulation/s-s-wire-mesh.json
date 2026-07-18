@@ -1,0 +1,21 @@
+{
+  "name": "S.S. Wire Mesh",
+  "description": "S.S. Wire Mesh",
+  "shortDescription": "S.S. Wire Mesh",
+  "category": "Industrial Insulation",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069702061-6-j0x1",
+  "price": 83,
+  "discountPrice": 83,
+  "images": [
+    "/mmmm/uploads/SKU-1782069702061-6-j0x1.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Industrial Insulation"
+  ],
+  "stock": 42,
+  "status": "Active",
+  "slug": "s-s-wire-mesh"
+}

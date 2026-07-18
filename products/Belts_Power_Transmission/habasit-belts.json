@@ -1,0 +1,21 @@
+{
+  "name": "Habasit Belts",
+  "description": "Habasit Belts",
+  "shortDescription": "Habasit Belts",
+  "category": "Belts Power Transmission",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069697843-30-y0r6",
+  "price": 170,
+  "discountPrice": 140,
+  "images": [
+    "https://belts-store.com/wp-content/uploads/2017/04/Habasit_Belts-1-247x296.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Belts Power Transmission"
+  ],
+  "stock": 81,
+  "status": "Active",
+  "slug": "habasit-belts"
+}

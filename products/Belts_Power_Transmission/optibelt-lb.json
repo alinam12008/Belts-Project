@@ -1,0 +1,22 @@
+{
+  "name": "Optibelt LB",
+  "description": "Optibelt LB",
+  "shortDescription": "Optibelt LB",
+  "category": "Belts Power Transmission",
+  "subcategory": "Special Belts",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069696803-42-7fi9",
+  "price": 58,
+  "discountPrice": 58,
+  "images": [
+    "https://belts-store.com/wp-content/uploads/2025/10/Produktbild_Sonstige-Riemen_optibelt-LB_RGB-1-247x296.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Belts Power Transmission",
+    "Special Belts"
+  ],
+  "stock": 51,
+  "status": "Active",
+  "slug": "optibelt-lb"
+}

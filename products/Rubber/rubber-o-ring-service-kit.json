@@ -1,0 +1,21 @@
+{
+  "name": "Rubber O-Ring Service kit",
+  "description": "Rubber O-Ring Service kit",
+  "shortDescription": "Rubber O-Ring Service kit",
+  "category": "Rubber",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069701782-38-jrjy",
+  "price": 141,
+  "discountPrice": 119,
+  "images": [
+    "/mmmm/uploads/SKU-1782069701782-38-jrjy.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Rubber"
+  ],
+  "stock": 45,
+  "status": "Active",
+  "slug": "rubber-o-ring-service-kit"
+}

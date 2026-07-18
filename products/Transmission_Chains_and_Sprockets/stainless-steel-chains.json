@@ -1,0 +1,22 @@
+{
+  "name": "Stainless Steel Chains",
+  "description": "Stainless Steel Chains",
+  "shortDescription": "Stainless Steel Chains",
+  "category": "Transmission Chains and Sprockets",
+  "subcategory": "Transmission chain",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069704187-34-8cfl",
+  "price": 315,
+  "discountPrice": 290,
+  "images": [
+    "/mmmm/uploads/SKU-1782069704187-34-8cfl.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Transmission Chains and Sprockets",
+    "Transmission chain"
+  ],
+  "stock": 30,
+  "status": "Active",
+  "slug": "stainless-steel-chains"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Heat Insulation Cloth (Ordinary)",
+  "description": "Heat Insulation Cloth (Ordinary)",
+  "shortDescription": "Heat Insulation Cloth (Ordinary)",
+  "category": "Industrial Insulation",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069702062-46-cz1m",
+  "price": 394,
+  "discountPrice": 361,
+  "images": [
+    "/mmmm/uploads/SKU-1782069702062-46-cz1m.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Industrial Insulation"
+  ],
+  "stock": 96,
+  "status": "Active",
+  "slug": "heat-insulation-cloth-ordinary"
+}

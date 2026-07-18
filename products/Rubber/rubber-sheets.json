@@ -1,0 +1,21 @@
+{
+  "name": "Rubber Sheets",
+  "description": "Rubber Sheets",
+  "shortDescription": "Rubber Sheets",
+  "category": "Rubber",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069701781-0-np5h",
+  "price": 335,
+  "discountPrice": 312,
+  "images": [
+    "/mmmm/uploads/SKU-1782069701781-0-np5h.bmp"
+  ],
+  "specifications": {},
+  "tags": [
+    "Rubber"
+  ],
+  "stock": 65,
+  "status": "Active",
+  "slug": "rubber-sheets"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Clamping Plates",
+  "description": "Clamping Plates",
+  "shortDescription": "Clamping Plates",
+  "category": "Pulleys",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069701208-0-wrjk",
+  "price": 211,
+  "discountPrice": 181,
+  "images": [
+    "https://belts-store.com/wp-content/uploads/2011/07/RTEmagicC_alpha_spannplatten_kl_mg-1.gif-1.gif"
+  ],
+  "specifications": {},
+  "tags": [
+    "Pulleys"
+  ],
+  "stock": 35,
+  "status": "Active",
+  "slug": "clamping-plates"
+}

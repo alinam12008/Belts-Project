@@ -1,0 +1,21 @@
+{
+  "name": "Rubber Mounts",
+  "description": "Rubber Mounts",
+  "shortDescription": "Rubber Mounts",
+  "category": "Rubber",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069701782-26-54ve",
+  "price": 103,
+  "discountPrice": 72,
+  "images": [
+    "/mmmm/uploads/SKU-1782069701782-26-54ve.bmp"
+  ],
+  "specifications": {},
+  "tags": [
+    "Rubber"
+  ],
+  "stock": 84,
+  "status": "Active",
+  "slug": "rubber-mounts"
+}

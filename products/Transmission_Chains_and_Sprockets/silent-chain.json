@@ -1,0 +1,22 @@
+{
+  "name": "Silent Chain",
+  "description": "Silent Chain",
+  "shortDescription": "Silent Chain",
+  "category": "Transmission Chains and Sprockets",
+  "subcategory": "Transmission chain",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069704187-46-5tbu",
+  "price": 127,
+  "discountPrice": 104,
+  "images": [
+    "/mmmm/uploads/SKU-1782069704187-46-5tbu.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Transmission Chains and Sprockets",
+    "Transmission chain"
+  ],
+  "stock": 60,
+  "status": "Active",
+  "slug": "silent-chain"
+}

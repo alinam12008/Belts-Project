@@ -1,0 +1,21 @@
+{
+  "name": "Silicon Sheet",
+  "description": "Silicon Sheet",
+  "shortDescription": "Silicon Sheet",
+  "category": "Rubber",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069701782-14-0puq",
+  "price": 310,
+  "discountPrice": 282,
+  "images": [
+    "/mmmm/uploads/SKU-1782069701782-14-0puq.bmp"
+  ],
+  "specifications": {},
+  "tags": [
+    "Rubber"
+  ],
+  "stock": 61,
+  "status": "Active",
+  "slug": "silicon-sheet"
+}

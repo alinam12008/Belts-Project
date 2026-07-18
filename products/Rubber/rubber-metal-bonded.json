@@ -1,0 +1,21 @@
+{
+  "name": "Rubber Metal Bonded",
+  "description": "Rubber Metal Bonded",
+  "shortDescription": "Rubber Metal Bonded",
+  "category": "Rubber",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069701782-34-lx7i",
+  "price": 275,
+  "discountPrice": 245,
+  "images": [
+    "/mmmm/uploads/SKU-1782069701782-34-lx7i.bmp"
+  ],
+  "specifications": {},
+  "tags": [
+    "Rubber"
+  ],
+  "stock": 43,
+  "status": "Active",
+  "slug": "rubber-metal-bonded"
+}

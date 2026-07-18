@@ -1,0 +1,21 @@
+{
+  "name": "Rubber Stud",
+  "description": "Rubber Stud",
+  "shortDescription": "Rubber Stud",
+  "category": "Rubber",
+  "subcategory": "",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069701781-6-t0l4",
+  "price": 323,
+  "discountPrice": 297,
+  "images": [
+    "/mmmm/uploads/SKU-1782069701781-6-t0l4.bmp"
+  ],
+  "specifications": {},
+  "tags": [
+    "Rubber"
+  ],
+  "stock": 22,
+  "status": "Active",
+  "slug": "rubber-stud"
+}

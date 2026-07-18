@@ -1,0 +1,22 @@
+{
+  "name": "Conveyor Chain with Attachment",
+  "description": "Conveyor Chain with Attachment",
+  "shortDescription": "Conveyor Chain with Attachment",
+  "category": "Transmission Chains and Sprockets",
+  "subcategory": "Transmission chain",
+  "brand": "Optibelt",
+  "sku": "SKU-1782069704187-26-rs7o",
+  "price": 69,
+  "discountPrice": 69,
+  "images": [
+    "/mmmm/uploads/SKU-1782069704187-26-rs7o.jpg"
+  ],
+  "specifications": {},
+  "tags": [
+    "Transmission Chains and Sprockets",
+    "Transmission chain"
+  ],
+  "stock": 24,
+  "status": "Active",
+  "slug": "conveyor-chain-with-attachment"
+}
